@@ -1,0 +1,1315 @@
+<!doctype html>
+<html lang="es">
+
+  <head>
+
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- ─── BOOTSTRAP ───────────────────────────────────────────────────────── -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB"
+      crossorigin="anonymous"
+    /> 
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
+      crossorigin="anonymous"
+    ></script>
+
+    <!-- ─── SWEETALERT ───────────────────────────────────────────────────────── -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    <title>NOC N1</title>
+
+    <style type="text/css">
+      .bg-personalizate {
+        background-image: url("https://www.ufinet.com/wp-content/uploads/2024/01/bgUfinat2.png");
+        background-color: #f8f9fa;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: contain;
+        min-height: calc(100vh - 60.64px);
+        width: 100vw;
+        padding: 40px;
+      }
+      .ufi-textarea{
+        height: unset !important;
+      }
+      .text-primary{
+        color: #004C88 !important;
+      }
+
+    </style>
+
+  </head>
+
+  <body>
+    <!-- ─── Navbar ──────────────────────────────────────────────────── -->
+     <nav class="navbar nav navbar-expand-sm bg-white navbar-light shadow-sm">
+
+        <div class="container">
+
+            <a class="navbar-brand" href="https://www.ufinet.com/" target="_blank">
+            <img
+                src="https://kiodatacenters.com/hubfs/UFINET_WEB_FT_L.webp"
+                alt="Avatar Logo"
+                style="width: 60px"
+                class="rounded-pill"
+            />
+            </a>
+
+            <ul class="nav nav-pills">
+
+                <li class="nav-item">
+                    <a class="nav-link active" data-bs-toggle="pill" href="#service_tab">Tablas TDC</a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" data-bs-toggle="pill" href="#scripts">Scripts</a>
+                </li>
+
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#">Tablas N2</a>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="#n2cc_tab" data-bs-toggle="pill">Caída Total</a></li>
+                        <li><a class="dropdown-item" href="#n2ci_tab" data-bs-toggle="pill">Degradación</a></li>
+                        <li><a class="dropdown-item" href="#n2s_tab" data-bs-toggle="pill">Solicitudes/SSA</a></li>
+                    </ul>
+                </li>
+                
+                <li class="nav-item">
+                    <a class="nav-link" data-bs-toggle="pill" href="#layoutmail_tab">Plantilla Correo</a>
+                </li>
+
+            </ul>
+
+        </div>
+
+    </nav>
+
+    <!-- Secciones -->
+    <div class="bg-personalizate d-flex justify-content-center align-items-center">
+
+        <div class="tab-content">
+    
+            <!-- ─── Plantilla correo cierres ────────────────────────────────────── -->
+            <section class="tab-pane container fade" id="layoutmail_tab"  style="width: 1000px;">
+
+                <form id="fm_mailtemplate" class="bg-white p-5 rounded-4 shadow">
+
+                    <h3 class="text-center mb-4 text-primary fw-bold">Generador de Respuesta Técnica</h3>
+                    
+                    <div class="bg-light p-3 rounded-3 border mb-4">
+
+                        <h5 class="border-start border-4 border-primary mb-3"><span class="ms-2">ÚLTIMA MILLA (UM)</span></h5>
+
+                        <div class="row">
+                            <div class="col">
+                                <div class="form-floating mb-3">
+                                    <textarea class="form-control" id="in_uptime" placeholder=""></textarea>
+                                    <label>Uptime del equipo (CPE):</label>
+                                </div>
+                                 <div class="form-floating mb-3">
+                                    <textarea class="form-control" id="in_trafficlan" placeholder=""></textarea>
+                                    <label>Tráfico actual en puerto LAN:</label>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="form-floating mb-3">
+                                    <textarea class="form-control" id="in_mac" placeholder=""></textarea>
+                                    <label>MAC Address aprendidas:</label>
+                                </div>
+                                <div class="form-floating mb-3">
+                                    <textarea class="form-control" id="in_nodepower" placeholder=""></textarea>
+                                    <label>Niveles de potencia óptica (RX / TX) Nodo:</label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-floating">
+                            <textarea class="form-control" id="in_nodeflap" placeholder=""></textarea>
+                            <label>Histórico de eventos (Flapping / Caídas) Nodo:</label>
+                        </div>
+
+                    </div>
+
+                    <div class="bg-light p-3 rounded-3 border mb-4">
+
+                        <h5 class="border-start border-4 border-primary mb-3"><span class="ms-2">RED MPLS CORE</span></h5>
+
+                        <div class="row">
+
+                            <div class="col">
+                                <div class="form-floating">
+                                    <textarea class="form-control" id="in_vcflap" placeholder=""></textarea>
+                                    <label>Tiempo desde el último cambio (VC):</label>
+                                </div>
+                            </div>
+
+                            <div class="col">
+                                <div class="form-floating">
+                                    <textarea class="form-control" id="in_pingvc" placeholder=""></textarea>
+                                    <label>Ping sobre la etiqueta VC:</label>
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    <!-- ─── Check Internet ──────────── -->
+                    <div class="form-check form-switch mb-3">
+                        <input id="check_content_internet" class="form-check-input" type="checkbox" name="darkmode" value="no" role="button">
+                        <label class="form-check-label" for="check_content_internet">CAPACIDAD</label>
+                    </div>
+
+                    <div id="content_internet" class="bg-light p-3 rounded-3 border mb-4 d-none">
+                        <div class="row">
+                            <div class="col">
+                                <div class="form-floating mb-3">
+                                    <textarea class="form-control" id="in_arp" placeholder=""></textarea>
+                                    <label>Tabla ARP:</label>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="form-floating mb-3">
+                                    <textarea class="form-control" id="in_pingcustomer" placeholder=""></textarea>
+                                    <label>Ping hacia IP del cliente:</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-floating">
+                            <textarea class="form-control" id="in_pingoogle" placeholder=""></textarea>
+                            <label>Ping a 8.8.8.8:</label>
+                        </div>
+                    </div>
+
+                    <div class="d-flex justify-content-end">
+                        <button type="button" class="btn btn-primary btn_copy_layout me-2">Copiar Plantilla</button>
+                        <button type="button" class="btn btn-danger btn-clean">Limpiar Todo</button>
+                    </div>
+
+                </form>
+
+            </section>
+
+            <!-- ─── Plantillas Scripts correo ────────────────────────────────────── -->
+            <section class="tab-pane container fade" id="scripts" style="width: 1000px;">
+
+                <form id="fm_n1scripts" class="bg-white p-5 rounded-4 shadow">
+
+                    <h3 class="text-center text-primary fw-bold">Scripts N1</h3>
+
+                    <div class="form-floating my-3">
+                        <select role="button" id="miSelect" class="form-select w-100" id="">
+                            <option value = "">Selecciona el script</option>
+                        </select>
+                        <label class="form-label">Tipo Script:</label>
+                    </div>
+
+                    <div class="form-floating mb-3">
+                        <textarea readonly id="out_script" class="form-control ufi-textarea bg-light" id="" placeholder="" rows="10"></textarea>
+                        <label>Comentario</label>
+                    </div>
+                    
+                    <div class="d-flex justify-content-end">
+                        <button type="button" class="btn btn-primary btn_copy_layout">Copiar Plantilla</button>
+                    </div>
+
+                </form>
+
+            </section>
+
+            <!-- ─── N2 Caída total ──────────────────────────────────────── -->
+            <section class="tab-pane container fade" id="n2cc_tab" style="width: 1000px;">
+
+                <form id="fm_n2_ct" class="bg-white p-5 rounded-4 shadow">
+
+                    <h3 class="text-center mb-4 text-primary fw-bold">Escalamiento N1 → N2 | Caída Total</h3>
+
+                    <!-- ─── CHECK ───────────── -->
+                    <div class="form-check form-switch mb-3">
+                        <input id="check_n2CInternet" class="form-check-input" type="checkbox" value="no" role="button">
+                        <label class="form-check-label" for="check_n2CInternet">CAPACIDAD</label>
+                    </div>
+
+                    <!-- ─── N1 – ACCESO / ÚLTIMA MILLA (COMÚN) ───────────── -->
+                    <div class="bg-light p-3 rounded-3 border mb-4">
+
+                        <h5 class="border-start border-4 border-primary mb-3"><span class="ms-2">VALIDACIONES ACCESO / ÚLTIMA MILLA</span></h5>
+
+                        <div class="row">
+
+                            <div class="col">
+
+                                <div class="form-floating mb-3">
+                                    <textarea class="form-control" id="in_clientPortStatus" placeholder=""></textarea>
+                                    <label>Estado puerto cliente / UNI (A y B si aplica):</label>
+                                </div>
+
+                                <div class="form-floating">
+                                    <select role="button" class="form-select" id="in_localFailureDiscard">
+                                        <option value = "Si">Si</option>
+                                        <option value = "No">No</option>
+                                    </select>
+                                    <label class="form-label">¿Se descartó falla local básica en acceso? (Puerto Down / VLAN)</label>
+                                </div>
+
+                            </div>
+
+                            <div class="col">
+
+                                <div class="form-floating mb-3">
+                                    <textarea class="form-control" id="in_utilizationSpeed" placeholder=""></textarea>
+                                    <label>Utilización (Speed):</label>
+                                </div>
+
+                                <div class="form-floating mb-3">
+                                    <select role="button" class="form-select" id="in_portErrors">
+                                        <option value = "No">No</option>
+                                        <option value = "Si">Si</option>
+                                    </select>
+                                    <label class="form-label">¿Hay CRC, drops, flaps?</label>
+                                </div>
+                                
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    <!-- ─── INFORMACIÓN DE IMPACTO (COMÚN) ───────────── -->
+                    <div class="bg-light p-3 rounded-3 border mb-4">
+
+                        <h5 class="border-start border-4 border-primary mb-3"><span class="ms-2">INFORMACIÓN DE IMPACTO</span></h5>
+
+                        <div class="row">
+                            <div class="col">
+                                <div class="form-floating mb-3">
+                                    <input type="text" class="form-control" id="in_testExactTime" placeholder="">
+                                    <label>Hora exacta de la prueba:</label>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="form-floating">
+                                    <select role="button" class="form-select" id="in_outageStatus">
+                                        <option value = "Si">Si</option>
+                                        <option value = "No">No</option>
+                                    </select>
+                                    <label class="form-label">¿La caída continúa al momento del escalamiento?:</label>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <!-- ─── CARACTERIZACIÓN (INTERNET) ───────────── -->
+                    <div class="content_n2int bg-light p-3 rounded-3 border mb-4 d-none">
+
+                        <h5 class="border-start border-4 border-primary mb-3"><span class="ms-2">CARACTERIZACIÓN</span></h5>
+
+                        <div class="row mb-3">
+
+                            <div class="col">
+                                <div class="form-floating">
+                                    <select role="button" class="form-select" id="in_impactScope">
+                                        <option value = "Un usuario">Un usuario</option>
+                                        <option value = "Varios usuarios">Varios usuarios</option>
+                                        <option value = "Toda la sede">Toda la sede</option>
+                                        <option value = "Varias sedes">Varias sedes</option>
+                                        <option value = "Masivo">Masivo</option>
+                                    </select>
+                                    <label class="form-label">Alcance del impacto::</label>
+                                </div>
+                            </div>
+
+                            <div class="col">
+                                <div class="form-floating">
+                                    <select role="button" class="form-select" id="in_affectationType">
+                                        <option value = "Sin navegación">Sin navegación</option>
+                                        <option value = "Sin respuesta a ningún destinos">Sin respuesta destino especifico</option>
+                                        <option value = "Sin DNS">Sin DNS</option>
+                                        <option value = "Sin gateway">Sin gateway</option>
+                                        <option value = "BGP down">BGP down</option>
+                                    </select>
+                                    <label class="form-label">Tipo de afectación:</label>
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <div class="form-floating mb-3">
+                            <select role="button" class="form-select" id="in_hasBgp">
+                                <option value = "Si">Si</option>
+                                <option value = "No">No</option>
+                            </select>
+                            <label class="form-label">¿Tiene BGP?</label>
+                        </div>
+
+                        <div class="row">
+
+                            <div class="col">
+                                <div class="form-floating">
+                                    <input type="text" class="form-control" id="in_peerIps" placeholder="">
+                                    <label>Peer IPs:</label>
+                                </div>
+                            </div>
+
+                            <div class="col">
+                                <div class="form-floating">
+                                    <input type="text" class="form-control" id="in_clientAsn" placeholder="">
+                                    <label>ASN cliente:</label>
+                                </div>
+                            </div>
+
+                            <div class="col">
+                                <div class="form-floating">
+                                    <select role="button" class="form-select" id="in_sessionStatus">
+                                        <option value = "Up">Up</option>
+                                        <option value = "Downo">Down</option>
+                                        <option value = "Intermitente">Intermitente</option>
+                                    </select>
+                                    <label class="form-label">Estado sesión:</label>
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    <!-- ─── PRUEBAS DESDE EL CLIENTE / EXTREMOS (CAPACIDAD) ───────────── -->
+                    <div class="content_n2cap bg-light p-3 rounded-3 border mb-4">
+
+                        <h5 class="border-start border-4 border-primary mb-3"><span class="ms-2">PRUEBAS DESDE EL CLIENTE / EXTREMOS</span></h5>
+
+                        <div class="row mb-3">
+
+                            <div class="col">
+                                <div class="form-floating">
+                                    <textarea class="form-control" id="in_pingAtoB" placeholder=""></textarea>
+                                    <label>Ping extremo A → B (Si Aplica):</label>
+                                </div>
+                            </div>
+
+                            <div class="col">
+                                <div class="form-floating">
+                                    <textarea class="form-control" id="in_pingBtoA" placeholder=""></textarea>
+                                    <label>Ping extremo B → A (Si Aplica):</label>
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <div class="form-floating mb-3">
+                            <select role="button" class="form-select" id="in_affectedApp">
+                                <option value="" disabled selected>Seleccione el impacto...</option>
+                                <optgroup label="Servicios de Tiempo Real (Prioridad Alta)">
+                                    <option value="voip">Voz sobre IP (SIP/RTP) - Telefonía</option>
+                                    <option value="Video | Streaming">Video Conferencia / Streaming Crítico</option>
+                                    <option value="VPN">Túneles VPN / Enlaces de Capacidad (L2VPN/L3VPN)</option>
+                                </optgroup>
+                                <optgroup label="Servicios de Datos y Gestión">
+                                    <option value="WEB">Navegación General (HTTP/HTTPS)</option>
+                                    <option value="Aplicaciones de Negocio">Aplicaciones de Negocio (SAP, Oracle, CRM)</option>
+                                    <option value="BD">Replicación de Bases de Datos</option>
+                                    <option value="MGMT">Tráfico de Gestión (SNMP, SSH, ICMP)</option>
+                                </optgroup>
+                                <optgroup label="Otros">
+                                    <option value="(FTP/SFTP)">Transferencia de Archivos / Backups (FTP/SFTP)</option>
+                                    <option value="Tráfico Multiservicio">Tráfico Multiservicio (Internet Residencial/Corporativo)</option>
+                                    <option value="No identificado">No Identificado</option>
+                                </optgroup>
+                            </select>
+                            <label class="form-label">Aplicación o tráfico afectado: </label>
+                        </div>
+
+                        <div class="form-floating">
+                            <textarea class="form-control ufi-textarea" id="in_outageEvidence" placeholder="" rows="2"></textarea>
+                            <label>Evidencia de caída total reportada por cliente:</label>
+                        </div>
+
+                    </div>
+
+                    <!-- ─── PRUEBAS MPLS (COMÚN) ───────────── -->
+                    <div class="bg-light p-3 rounded-3 border mb-4">
+
+                        <h5 class="border-start border-4 border-primary mb-3"><span class="ms-2">PRUEBAS DESDE LA RED / EDGE / PE</span></h5>
+
+                        <div class="row">
+
+                            <div class="col">
+
+                                <div class="form-floating mb-3">
+                                    <select role="button" class="form-select" id="in_pwStatus">
+                                        <option value = "Up">Up</option>
+                                        <option value = "Down">Down</option>
+                                        <option value = "Admin Down">Admin Down</option>
+                                    </select>
+                                    <label class="form-label">Estado del pseudowire:</label>
+                                </div>
+
+                                <div class="form-floating">
+                                    <select role="button" class="form-select" id="in_pwResponse">
+                                        <option value = "Si">Si</option>
+                                        <option value = "No">No</option>
+                                    </select>
+                                    <label class="form-label">¿El pseudowire responde?:</label>
+                                </div>
+
+                            </div>
+
+                            <div class="col">
+
+                                <div class="form-floating mb-3">
+                                    <textarea class="form-control" id="in_pingOverPw" placeholder=""></textarea>
+                                    <label>Ping de prueba sobre pseudowire:</label>
+                                </div>
+
+                                <div class="form-floating">
+                                    <input type="text" class="form-control" id="in_pwErrorDetail" placeholder="">
+                                    <label for="email">Error en VC/PW</label>
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    <!-- ─── PRUEBAS MPLS (CAPACIDAD) ───────────── -->
+                    <div class="content_n2cap bg-light p-3 rounded-3 border mb-4">
+
+                        <div class="row">
+
+                            <div class="col">
+
+                                <div class="form-floating mb-3">
+                                    <textarea class="form-control" id="in_portsEndA" placeholder=""></textarea>
+                                    <label>Puertos Extremo A (Estado y VLAN):</label>
+                                </div>
+
+                                <div class="form-floating">
+                                    <select role="button" class="form-select" id="in_trafficpkts">
+                                        <option value = "Si">Si</option>
+                                        <option value = "No">No</option>
+                                    </select>
+                                    <label class="form-label">¿Se observa tráfico (Pkts In/Out)?</label>
+                                </div>
+
+                            </div>
+
+                            <div class="col">
+
+                                <div class="form-floating mb-3">
+                                    <textarea class="form-control" id="in_portsEndB" placeholder=""></textarea>
+                                    <label>Puertos Extremo B (Estado y VLAN):</label>
+                                </div>
+
+                                <div class="form-floating">
+                                    <select role="button" class="form-select" id="in_macLearning">
+                                        <option value = "Si">Si</option>
+                                        <option value = "No">No</option>
+                                        <option value = "N/A">No Aplica</option>
+                                    </select>
+                                    <label class="form-label">¿Se observa aprendizaje MAC?</label>
+                                </div>
+
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    <!-- ─── PRUEBAS EDGE (INTERNET) ───────────── -->
+                    <div class="content_n2int bg-light p-3 rounded-3 border mb-4 d-none">
+
+                        <div class="row">
+
+                            <div class="col">
+
+                                <div class="form-floating mb-3">
+                                    <textarea class="form-control" id="in_pingBviToArp" placeholder=""></textarea>
+                                    <label>Ping desde BVI/PE a IP aprendida por ARP(Cliente):</label>
+                                </div>
+
+                                <div class="form-floating mb-3">
+                                    <select role="button" class="form-select" id="in_arpVsPwResult">
+                                        <option value = "Responden ambos">Responden ambos</option>
+                                        <option value = "Responde ARP, no responde pseudowire">Responde ARP, no responde pseudowire</option>
+                                        <option value = "Responde pseudowire, no responde ARP">Responde pseudowire, no responde ARP</option>
+                                        <option value = "No responde ningun">No responde ningun</option>
+                                        <option value = "Respuesta intermitente">Respuesta intermitente</option>
+                                    </select>
+                                    <label class="form-label">Resultado comparativo ARP vs pseudowire:</label>
+                                </div>
+
+                                <div class="form-floating">
+                                    <textarea class="form-control" id="in_traceBviToPublic" placeholder=""></textarea>
+                                    <label>Traceroute desde la BVI / PE hacia destino público:</label>
+                                </div>
+
+                            </div>
+
+                            <div class="col">
+
+                                <div class="form-floating mb-3">
+                                    <textarea class="form-control" id="in_pingBviToPublic" placeholder=""></textarea>
+                                    <label>Ping desde la BVI / PE a 8.8.8.8 u otro destino público:</label>
+                                </div>
+
+                                <div class="form-floating">
+                                    <select role="button" class="form-select" id="in_edgeReachability">
+                                        <option value = "No hay alcance ni al cliente ni al destino externo">Hay alcance al cliente y al destino externo</option>
+                                        <option value = "No hay alcance al client">No hay alcance al cliente</option>
+                                        <option value = "Hay alcance a internet pero no al cliente">Hay alcance a internet pero no al cliente</option>
+                                        <option value = "No hay alcance ni al cliente ni al destino externo">No hay alcance ni al cliente ni al destino externo</option>
+                                        <option value = "Intermitente al cliente">Intermitente al cliente</option>
+                                        <option value = "Intermitente a internet">Intermitente a internet</option>
+                                    </select>
+                                    <label class="form-label">Validación de alcance desde borde de red:</label>
+                                </div>
+
+                                
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    <!-- ─── EVIDENCIA CLIENTE (INTERNET) ───────────── -->
+                    <div class="content_n2int bg-light p-3 rounded-3 border mb-4 d-none">
+
+                        <h5 class="border-start border-4 border-primary mb-3"><span class="ms-2">EVIDENCIA CLIENTE</span></h5>
+
+                        <p class="text-danger">Si la evidencia son imagenes dejar campo vacio</p>
+
+                        <ul>
+                            <li>Ping al gateway Ufinet</li>
+                            <li>Ping a IP pública / Dominio (8.8.8.8 / www.dominio.com)</li>
+                            <li>Traceroute</li>
+                            <li>nslookup (www.dominio.com):</li>
+                            <li>Mensaje de error exacto / Evidencia adicional:</li>
+                        </ul>
+
+                        <textarea class="form-control" rows="3" id="in_clientEvidenceDetails" placeholder="Detalles..."></textarea>
+
+                    </div>
+
+                    <!-- ─── CONCLUSIÓN ───────────── -->
+                    <div class="bg-light p-3 rounded-3 border mb-4">
+
+                        <h5 class="border-start border-4 border-primary mb-3"><span class="ms-2">CONCLUSIÓN</span></h5>
+
+                        <label>Motivo de escalación, observaciones y puntos de interés:</label>
+                        <textarea class="form-control" rows="3" id="in_conclusionNotes" placeholder="Detalles..."></textarea>
+
+                    </div>
+
+                    <button type="button" class="btn btn-primary btn_copy_layout">Copiar Plantilla</button>
+                    <button type="button" class="btn btn-danger btn-clean">Limpiar Todo</button>
+
+                </form>
+
+            </section>
+
+            <!-- ─── N2 Degradación (FALTA) ──────────────────────────────────────── -->
+            <div class="tab-pane container fade" id="n2ci_tab">N2DC</div>
+
+            <!-- ─── N2 solicitudes (IP/TX) ──────────────────────────────────────── -->
+            <div class="tab-pane container fade" id="n2s_tab" style="width: 1000px;">
+
+                <form id="fm_n2s_tab" class="bg-white p-5 rounded-4 shadow">
+
+                    <h3 class="text-center mb-4 text-primary fw-bold">Escalamiento N1 → N2 Solicitudes | Motivos | Consultas</h3>
+
+                    <!-- ─── CHECK ───────────── -->
+                    <div class="form-check form-switch mb-3">
+                        <input id="check_n2SSA" class="form-check-input" type="checkbox" value="no" role="button">
+                        <label class="form-check-label" for="check_n2SSA">IP</label>
+                    </div>
+                    
+                    <!-- ─── DATOS CLIENTE ───────────── -->
+                    <div class="bg-light p-3 rounded-3 border mb-4">
+
+                        <h5 class="border-start border-4 border-primary mb-3"><span class="ms-2">Datos Cliente</span></h5>
+
+                        <div class="row">
+                            <div class="col">
+                                <div class="form-floating mb-3">
+                                    <input type="text" class="form-control" id="in_noticket1" placeholder="">
+                                    <label>No. Ticket:</label>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="form-floating mb-3">
+                                    <input type="text" class="form-control" id="in_id1" placeholder="">
+                                    <label>ID & Cliente Ufinet:</label>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <!-- ─── INFORMACIÓN TECNICA ───────────── -->
+                    <div class="bg-light p-3 rounded-3 border mb-4 d-none" id="content_n2tecdata">
+
+                        <h5 class="border-start border-4 border-primary mb-3"><span class="ms-2">INFORMACIÓN TECNICA</span></h5>
+
+                        <div class="row">
+                            <div class="col">
+                                <div class="form-floating mb-3">
+                                    <input type="text" class="form-control" id="in_n2source" placeholder="">
+                                    <label>Origen:</label>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="form-floating mb-3">
+                                    <input type="text" class="form-control" id="in_n2endcustomer" placeholder="">
+                                    <label>Destino:</label>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="form-floating mb-3">
+                                    <input type="text" class="form-control" id="in_n2bw" placeholder="">
+                                    <label>Ancho de banda:</label>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <!-- ─── DATOS IMPORTANTES ───────────── -->
+                    <div class="bg-light p-3 rounded-3 border mb-4">
+
+                        <h5 class="border-start border-4 border-primary mb-3"><span class="ms-2">Tipo de Falla</span></h5>
+
+                        <div class="row mb-3">
+                            <div class="col">
+                                <div class="form-floating">
+                                    <select role="button" class="form-select" id="in_failtype1">
+                                        <option value = "Caída Total">Caída Total</option>
+                                        <option value = "Degradación">Degradación</option>
+                                        <option value = "Sin servicio afectado">Sin servicio afectado</option>
+                                    </select>
+                                    <label class="form-label">Tipo de falla:</label>
+                                </div>
+                            </div>
+
+                        </div>
+
+
+                    </div>
+
+                    <!-- ─── REPORTE CLIENTE ───────────── -->
+                    <div class="bg-light p-3 rounded-3 border mb-4">
+                        
+                        <h5 class="border-start border-4 border-primary mb-3"><span class="ms-2">Reporte del cliente</span></h5>
+
+                        <div class="form-floating">
+                            <textarea class="form-control ufi-textarea" id="in_reportecliente" placeholder="" rows="8"></textarea>
+                            <label>Reporte del cliente:</label>
+                        </div>
+
+                    </div>
+                    
+                    <!-- ─── DIAGNOSTICO ───────────── -->
+                    <div class="bg-light p-3 rounded-3 border mb-4" id="content_n2valn1">
+
+                        <h5 class="border-start border-4 border-primary mb-3"><span class="ms-2">Diagnóstico</span></h5>
+
+                        <div class="form-floating">
+                            <textarea class="form-control ufi-textarea" id="in_n1validation1" placeholder="" rows="8"></textarea>
+                            <label>Diagnóstico N1:</label>
+                        </div>
+
+                    </div>
+
+                    <!-- ─── ASIGNACIÓN ───────────── -->
+                    <div class="bg-light p-3 rounded-3 border mb-4">
+
+                        <h5 class="border-start border-4 border-primary mb-3"><span class="ms-2">Asignación</span></h5>
+
+                        <label class="form-label">Ingeniero N1:</label>
+                        <input role="button" class="form-control" list="list_n1eng" id="in_n1eng1" placeholder="Seleccione un nombre...">
+                        <datalist class="n1-selector" id="list_n1eng">
+                        </datalist>
+
+                    </div>
+
+                    <button type="button" class="btn btn-primary btn_copy_layout">Copiar Plantilla</button>
+                    <button type="button" class="btn btn-danger btn-clean">Limpiar Todo</button>
+
+                </form>
+
+            </div>
+
+            <!-- ─── TORRE DE CONTROL ──────────────────────────────────────── -->
+            <section class="tab-pane container active" id="service_tab"  style="width: 1000px;">
+
+                <form id="fm_tdc" class="bg-white p-5 rounded-4 shadow">
+
+                    <h3 class="text-center mb-4 text-primary fw-bold">Escalación Torre de Control</h3>
+                    
+                    <!-- ─── DATOS CLIENTE ───────────── -->
+                    <div class="bg-light p-3 rounded-3 border mb-4">
+
+                        <h5 class="border-start border-4 border-primary mb-3"><span class="ms-2">DATOS CLIENTE</span></h5>
+
+                        <div class="row">
+                            <div class="col">
+                                <div class="form-floating mb-3">
+                                    <input type="text" class="form-control" id="in_noticket" placeholder="">
+                                    <label>No. Ticket:</label>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="form-floating mb-3">
+                                    <input type="text" class="form-control" id="in_id" placeholder="">
+                                    <label>ID & Cliente Ufinet:</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-floating">
+                            <input type="text" class="form-control" id="in_endcustomer" placeholder="">
+                            <label>Cliente final:</label>
+                        </div>
+
+                    </div>
+
+                    <!-- ─── CHECK MASIVA ───────────── -->
+                    <div class="form-check form-switch mb-3">
+                        <input id="check_content_masiva" class="form-check-input" type="checkbox" name="darkmode" value="no" role="button">
+                        <label class="form-check-label" for="check_content_masiva">INDIVIDUAL</label>
+                    </div>
+                    
+                    <!-- ─── DATOS DE CONTACTO ───────────── -->
+                    <div id="content_visita" class="bg-light p-3 rounded-3 border mb-4">
+                        
+                        <h5 class="border-start border-4 border-primary mb-3"><span class="ms-2">DATOS DE CONTACTO</span></h5>
+
+                        <div class="row">
+
+                            <div class="col">
+                                <div class="form-floating mb-3">
+                                    <input type="text" class="form-control" id="in_contactname" placeholder="" value="Por confirmar">
+                                    <label>Nombre de contacto en sitio:</label>
+                                </div>
+                                <div class="form-floating">
+                                    <input type="text" class="form-control" id="in_contactaddress" placeholder="" value="Por confirmar">
+                                    <label>Dirección:</label>
+                                </div>
+                            </div>
+
+                            <div class="col">
+                                <div class="form-floating mb-3">
+                                    <input type="text" class="form-control" id="in_contactnumber" placeholder="" value="Por confirmar">
+                                    <label>Número de contacto:</label>
+                                </div>
+                                <div class="form-floating">
+                                    <input type="text" class="form-control" id="in_contactschedule" placeholder="" value="Por confirmar">
+                                    <label>Horarios:</label>
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    <!-- ─── DATOS IMPORTANTES ───────────── -->
+                    <div id="content_datos_imp" class="bg-light p-3 rounded-3 border mb-4">
+
+                        <h5 class="border-start border-4 border-primary mb-3"><span class="ms-2">DATOS IMPORTANTES</span></h5>
+
+                        <div class="row mb-3">
+
+                            <div class="col">
+                                <div class="form-floating mb-3">
+                                    <select role="button" class="form-select" id="in_failtype">
+                                        <option value = "Caída total">Caída</option>
+                                        <option value = "Degradación">Degradación</option>
+                                        <option value = "Sin servicio afectado">Sin servicio afectado</option>
+                                    </select>
+                                    <label class="form-label">Tipo de falla:</label>
+                                </div>
+                                <div class="form-floating">
+                                    <select role="button" class="form-select" id="in_alarm">
+                                        <option value = "no">No</option>
+                                        <option value = "si">Si</option>
+                                    </select>
+                                    <label class="form-label">Alarma de Dying Gasp:</label>
+                                </div>
+                            </div>
+
+                            <div class="col">
+                                <div class="form-floating mb-3">
+                                    <select role="button" class="form-select" id="in_discards">
+                                        <option value = "no">No</option>
+                                        <option value = "si">Si</option>
+                                        <option value = "verbales">Verbales</option>
+                                    </select>
+                                    <label class="form-label">Descartes 1er nivel:</label>
+                                </div>
+                                <div class="form-floating ">
+                                    <input type="text" class="form-control" id="in_alarmdate" placeholder="">
+                                    <label>Fecha alarma DG:</label>
+                                </div>
+                            </div>
+
+                        </div>
+                        
+                        <div class="form-floating">
+                            <select role="button" class="form-select" id="in_topology">
+                                <option value = "no">No</option>
+                                <option value = "si">Si</option>
+                                <option value = "ring">Anillo</option>
+                            </select>
+                            <label class="form-label">Bus/Anillo:</label>
+                        </div>
+
+                    </div>
+
+                    <!-- ─── INFORMACIÓN TECNICA ───────────── -->
+                    <div class="bg-light p-3 rounded-3 border mb-4">
+                        
+                        <h5 class="border-start border-4 border-primary mb-3"><span class="ms-2">INFORMACIÓN TÉCNICA</span></h5>
+
+                        <div class="row">
+                            <div class="col">
+                                <div class="form-floating mb-3">
+                                    <input type="text" class="form-control" id="in_nodename" placeholder="" value="">
+                                    <label>Nombre Nodo:</label>
+                                </div>
+                                <div class="form-floating">
+                                    <input type="text" class="form-control" id="in_mgtip" placeholder="" value="">
+                                    <label>Ip gestión del acceso:</label>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="form-floating mb-3">
+                                    <input type="text" class="form-control" id="in_accesshn" placeholder="" value="">
+                                    <label>Equipo de acceso:</label>
+                                </div>
+                                <div class="form-floating">
+                                    <input type="text" class="form-control" id="in_accessport" placeholder="" value="">
+                                    <label>Puerto del acceso:</label>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                    
+                    <!-- ─── DIAGNOSTICO ───────────── -->
+                    <div class="bg-light p-3 rounded-3 border mb-4">
+
+                        <h5 class="border-start border-4 border-primary mb-3"><span class="ms-2">DIAGNOSTICO</span></h5>
+
+                        <div class="form-floating">
+                            <textarea class="form-control ufi-textarea" id="in_n1validation" placeholder="" rows="8"></textarea>
+                            <label>Diagnóstico N1:</label>
+                        </div>
+
+                    </div>
+
+                    <!-- ─── ASIGNACIÓN ───────────── -->
+                    <div class="bg-light p-3 rounded-3 border mb-4">
+
+                        <h5 class="border-start border-4 border-primary mb-3"><span class="ms-2">ASIGNACIÓN</span></h5>
+
+                        <label class="form-label">Ingeniero N1:</label>
+                        <input role="button" class="form-control" list="list_n1eng" id="in_n1eng" placeholder="Seleccione un nombre...">
+                        <datalist class="n1-selector" id="list_n1eng">
+                        </datalist>
+
+                    </div>
+
+                    <button type="button" class="btn btn-primary btn_copy_layout">Copiar Plantilla</button>
+                    <button type="button" class="btn btn-danger btn-clean">Limpiar Todo</button>
+
+                </form>
+
+            </section>
+        
+        </div> 
+
+    </div>
+
+    <script>
+        
+        document.addEventListener("DOMContentLoaded", function() {
+
+            // LISTADO N1
+            const nombres = [
+                "A. Felipe Osorio Herrera",
+                "Angel S. Angulo Gamboa",
+                "A. Alejandro Valenciano Grijalba",
+                "Alexis E. Lagos Castillo",
+                "Bryan Martinez Diaz",
+                "Cristian D. Vasquez Mosquera",
+                "Cesar A. Arciniegas Rosero",
+                "D. Fernando Monterroso Alonzo",
+                "David A. Moreno Salazar",
+                "Erick D. Arroliga Grijalba",
+                "Franklin A. Mencos Donis",
+                "Gina Zurley Caicedo Mera",
+                "Hallime Tamura Arara",
+                "Hammer A. Gamboa Izquierdo",
+                "Hanks A. Molina Pineda",
+                "Juan Pablo Arango Ramirez",
+                "Juan S. Naranjo Lopez",
+                "Juan Diego Carvajal Gonzalez",
+                "Juan S. Oquendo Pantoja",
+                "Julian A. Valencia Henao",
+                "Julio J. Ramirez Calel",
+                "Leobaldo J. Zerpa Romero",
+                "Lester J. Cruz Lopez",
+                "M. Andres Cadena Andrade",
+                "Mauro Rodriguez Diaz",
+                "Manuel A. Ramirez Agudelo",
+                "Richard A. Mesias Giraldo",
+                "Steven Marmolejo Guegia",
+                "Sergio D. Hurtado Muñoz",
+                "Tomys J. Ibarra Quiroz",
+                "Yan Carlos Chacue Delgado"
+            ];
+            const dataLists = document.querySelectorAll('.n1-selector');
+            dataLists.forEach(list => {
+
+                const fragment = document.createDocumentFragment();
+
+                nombres.forEach(nombre => {
+                    const option = document.createElement('option');
+                    option.value = nombre;
+                    fragment.appendChild(option);
+                });
+
+                list.innerHTML = "";
+                list.appendChild(fragment);
+            });
+
+            // TRAER DATOS GOOGLE SHEETS
+            const URL_WEB_APP = "https://script.google.com/macros/s/AKfycbylj9fe2akh98Qk9vYbBP_GMqgNVxy9BPTAUuG-E0y35SsSskWmIYAmzdz0fKtpsqVp/exec";
+            let datosGlobales = []; // guardar todos los datos del excel
+            async function cargarDatos() {
+                try {
+                    const respuesta = await fetch(URL_WEB_APP);
+                    const todosLosDatos = await respuesta.json();
+
+                    // Guardamos los datos omitiendo el encabezado (fila 1)
+                    datosGlobales = todosLosDatos.slice(1); 
+
+                    const select = document.getElementById('miSelect');
+                    select.innerHTML = '<option value="">Selecciona el script</option>';
+
+                    // Llenamos el select solo con la primera columna
+                    datosGlobales.forEach((fila, index) => {
+                        if (fila[0]) {
+                            let opt = document.createElement('option');
+                            opt.value = index; // Usamos el índice para encontrarlo luego
+                            opt.innerHTML = fila[0];
+                            select.appendChild(opt);
+                        }
+                    });
+
+                } catch (error) {
+                    console.error("Error:", error);
+                    alert("Hubo un error al conectar con el Excel.");
+                }
+            }
+
+            document.getElementById('miSelect').addEventListener('change', function(e) {
+                const index = e.target.value;
+                const textarea = document.getElementById('out_script');
+
+                if (index !== "") {
+                const filaSeleccionada = datosGlobales[index];
+
+                    // filaSeleccionada[1] extrae solo lo que hay en la segunda columba del Excel
+                    // Si la celda está vacía, mostrará un mensaje o quedará en blanco
+                    textarea.value = filaSeleccionada[1] || "Sin datos en esta columna";
+                } else {
+                    textarea.value = "";
+                }
+            });
+
+            cargarDatos();
+
+            const ui = {
+                // Checkboxes
+                checkInternet: document.getElementById("check_content_internet"),
+                checkMasiva: document.getElementById("check_content_masiva"),
+                checkN2ssa: document.getElementById("check_n2SSA"),
+                checkN2CInternet: document.getElementById("check_n2CInternet"),
+                // Contenedores individuales
+                contentInternet: document.getElementById("content_internet"),
+                contentVisita: document.getElementById("content_visita"),
+                contentDatosImp: document.getElementById("content_datos_imp"),
+                divsN2tecdata: document.getElementById("content_n2tecdata"),
+                divsN2valn1: document.getElementById("content_n2valn1"),
+                // NodeLists (Múltiples elementos)
+                divsInternet: document.querySelectorAll('.content_n2int'),
+                divsCapacidad: document.querySelectorAll('.content_n2cap')
+            };
+
+           /*  OCULTAR | MOSTAR DIVS */
+            function setupCheckbox(checkbox, elsToShow, elsToHide, textOn, textOff) {
+                if (!checkbox) return;
+
+                // Buscamos el label asociado al checkbox usando el atributo 'for'
+                const label = document.querySelector(`label[for="${checkbox.id}"]`);
+
+                // Función interna para actualizar el estado completo
+                const updateState = (isChecked) => {
+                    checkbox.value = isChecked ? "yes" : "no";
+
+                    // 1. Lógica de visibilidad (Bootstrap d-none)
+                    const showList = elsToShow ? (Array.isArray(elsToShow) || elsToShow instanceof NodeList ? elsToShow : [elsToShow]) : [];
+                    const hideList = elsToHide ? (Array.isArray(elsToHide) || elsToHide instanceof NodeList ? elsToHide : [elsToHide]) : [];
+
+                    showList.forEach(el => el.classList.toggle('d-none', !isChecked));
+                    hideList.forEach(el => el.classList.toggle('d-none', isChecked));
+
+                    // 2. Lógica de cambio de texto en el Label
+                    if (label && textOn && textOff) {
+                        label.textContent = isChecked ? textOn : textOff;
+                    }
+                };
+
+                // Ejecutar al cargar la página para establecer el estado inicial
+                updateState(checkbox.checked);
+
+                // Escuchar cambios futuros
+                checkbox.addEventListener('change', function() {
+                    updateState(this.checked);
+                });
+            }
+            setupCheckbox(ui.checkInternet, ui.contentInternet, null, "INTERNET", "CAPACIDAD");
+
+            // Caundo se requieran ocultar o monstrar varios div con el mismo check, se pasan como arreglo
+            setupCheckbox(ui.checkMasiva, null, [ui.contentVisita, ui.contentDatosImp], "MASIVA", "INDIVIDUAL");
+
+            setupCheckbox(ui.checkN2CInternet, ui.divsInternet, ui.divsCapacidad, "INTERNET", "CAPACIDAD");
+            setupCheckbox(ui.checkN2ssa, ui.divsN2tecdata, ui.divsN2valn1, "DWDM/TX", "IP");
+
+            //FUNCIÓN GENEREAL OBTENER DATOS FORMULARIOS
+            function getFormValues(formElement) {
+
+                const data = {};
+                const dataInputs = formElement.querySelectorAll('input, select, textarea');
+            
+                dataInputs.forEach(el => {
+                    if (el.id) {
+                        if (el.type === 'checkbox') {
+                            data[el.id] = el.checked;
+                        } else {
+                            data[el.id] = el.value;
+                        }
+                    }
+                });
+                return data;
+
+            }
+
+            //FUNCIÓN GENERAR PLANTILLAS
+            function myTemplates(formId, data) {
+
+                let layout = "";
+
+                switch(formId) {
+
+                    case 'fm_tdc':
+
+                        layout = `*📋 TABLA DE ESCALAMIENTO TORRE DE CONTROL / OYM LATAM*
+
+                        \n*🔹---------DATOS CLIENTE----------*
+                        \n*Número de ticket:* ${data.in_noticket || 'N/A'}
+                        \n*ID:* ${data.in_id || 'N/A'}
+                        \n*Tipo de afectación:* ${data.in_failtype || 'N/A'}
+                        \n*Cliente final:* ${data.in_endcustomer || 'N/A'}`;
+
+                        if (!data.check_content_masiva) {
+                            layout += `\n\n*🔹---------DATOS VISITA----------*
+                            \n*Nombre de contacto:* ${data.in_contactname || 'N/A'}
+                            \n*Número de contacto:* ${data.in_contactnumber || 'N/A'}
+                            \n*Horario de visita:* ${data.in_contactschedule || 'N/A'}
+                            \n*Dirección:* ${data.in_contactaddress || 'N/A'}
+                            \n\n*🔹--------DATOS IMPORTANTES--------*
+                            \n*Descartes 1er nivel:* ${data.in_discards || 'N/A'}
+                            \n*Alarma de Dyan Gasp:* ${data.in_alarm || 'N/A'}
+                            \n*Fecha alarma DG:* ${data.in_alarmdate || 'N/A'}
+                            \n*Bus (Sí/No):* ${data.in_topology || 'N/A'}
+                            `;
+                        }
+
+                        layout += `\n\n*🔹--------INFORMACIÓN TÉCNICA-------*
+                        \n*Nodo acceso destino:* ${data.in_nodename || 'N/A'}
+                        \n*Equipo acceso destino:* ${data.in_accesshn || 'N/A'}
+                        \n*Puerto acceso destino:* ${data.in_accessport || 'N/A'}
+                        \n*IP acceso destino:* ${data.in_mgtip || 'N/A'}
+
+                        \n*🔹----------DIAGNÓSTICO-------------*
+                        \n${data.in_n1validation || 'N/A'}
+
+                        \n*🔹----------ASIGNACIÓN-------------*
+                        \n*Ingeniero N1:* ${data.in_n1eng || 'N/A'}
+                        \n*Ingeniero TdC:* @`;
+
+                    break;
+
+                    case 'fm_n1scripts':
+                        layout = data.out_script;
+                        break;
+
+                    case 'fm_mailtemplate':
+
+                        let internetData = "";
+
+                        if (data.check_content_internet) {
+                            internetData = `\n*VALIDACIÓN CAPA 3*
+                            \nTabla ARP aprendida en equipo de borde: ${data.in_arp || 'N/A'}
+                            \nPrueba de conectividad hacia IP del cliente - Ping desde nuestro Gateway:
+                            \n${data.in_pingcustomer || 'N/A'}
+                            \nPrueba de salida a Internet - Ping hacia DNS público (8.8.8.8):
+                            \n${data.in_pingoogle || 'N/A'}`;
+                        }
+
+                        layout = `Estimado cliente.
+                        \nReciban un cordial saludo.
+                        \nHemos revisado el incidente reportado sobre la posible afectación del servicio. Se realizó una verificación completa de extremo a extremo sobre el enlace, incluyendo validaciones en la última milla, equipos de acceso y red core.
+                        \nDe acuerdo con nuestros sistemas de monitoreo y las pruebas realizadas por el equipo técnico, el servicio actualmente se encuentra OPERATIVO y ESTABLE.
+                        \nNo se evidencian caídas activas, pérdida de conectividad ni degradación dentro de nuestra infraestructura.
+                        \nA continuación, compartimos las verificaciones realizadas y las evidencias técnicas correspondientes.
+                        
+                        \n*VALIDACIONES DE ÚLTIMA MILLA (UM)*
+                        \n- Estado del equipo demarcador (CPE) - Uptime del equipo:
+                        \n${data.in_uptime || 'N/A'}
+                        \n- MAC Address aprendidas en ambos extremos (Cliente / Interconexión):
+                        \n${data.in_mac || 'N/A'}
+                        \n- Tráfico actual en puerto LAN:
+                        \n${data.in_trafficlan || 'N/A'}
+                        \n- Niveles de potencia óptica (Puerto Nodo – Cliente) RX / TX:
+                        \n${data.in_nodepower || 'N/A'}
+                        \n- Histórico de eventos del puerto (Flapping / Caídas):
+                        \n${data.in_nodeflap || 'N/A'}
+                        
+                        \n*VALIDACIONES RED MPLS CORE*
+                        \n- Estado de la etiqueta VC / Pseudowire - Tiempo desde el último cambio:
+                        \n${data.in_vcflap || 'N/A'}
+                        \n- Prueba de conectividad sobre VC - Ping entre routers peer sobre la etiqueta VC:
+                        \nParámetros de prueba:
+                        \n• Repeticiones: 1500
+                        \n• Tamaño de paquete: 1500 bytes
+                        \nResultado:
+                        \n${data.in_pingvc || 'N/A'}
+
+                        ${internetData}
+                        \nCon base en todas las verificaciones realizadas, no se identifican fallas dentro de nuestra red ni en el tramo de acceso hacia el cliente.
+                        \nEl enlace se encuentra estable, con conectividad activa y sin pérdida de paquetes en las pruebas ejecutadas.
+                        \nSugerimos amablemente validar la red interna del sitio (LAN, firewall o equipos intermedios), ya que desde nuestra infraestructura el servicio opera con normalidad.
+                        \nDe no presentarse nuevos eventos, procederemos con la resolución administrativa del ticket.
+                        \nNo obstante, quedamos completamente atentos si requieren que revisemos alguna prueba adicional junto a su equipo técnico.
+                        \nMuchas gracias por su colaboración.
+                        \nCordialmente,`;
+
+                    break;
+
+                    case 'fm_n2s_tab': 
+
+                        let title = data.check_n2SSA ? "*📋 TABLA DE ESCALAMIENTO N2 TX - DWDM*" : "*📋 TABLA DE ESCALAMIENTO N2 SOLICITUD/MOTIVO/CONSULTA*";
+
+                        let infoTecnica = data.check_n2SSA ? `\n\n*🔹-------- INFORMACIÓN TÉCNICA -------\n *Origen:* ${data.in_n2source}\n *Destino:* ${data.in_n2endcustomer}\n *Ancho de banda:* ${data.in_n2bw}` 
+                        : "";
+
+                        let diagnostico = !data.check_n2SSA ? `\n\n*🔹---------- DIAGNÓSTICO -------------\n ${data.in_n1validation1}` : "";
+
+                        layout = `Estimados, espero se encuentren bien. Solicito su colaboración por favor.
+                        \n${title}
+                        \n*🔹---------DATOS CLIENTE----------*
+                        \n*Número de ticket:* ${data.in_noticket1 || 'N/A'}
+                        \n*ID & Cliente Ufinet:* ${data.in_id1 || 'N/A'}
+                        \n*🔹--------DATOS IMPORTANTES--------*
+                        \n*Tipo de falla:* ${data.in_failtype1}${infoTecnica}
+                        \n*🔹-------- REPORTE DEL CLIENTE -------
+                        \n${data.in_reportecliente}${diagnostico}
+                        \n==================================
+                        \n*Ingeniero N1:* ${data.in_n1eng1}
+                        \n*Ingeniero N2:* Pendiente asignación`;
+
+                    break;
+
+                    default:
+                        layout = `plantilla no definida para el formulario: ${formId}`;
+
+                }
+
+                return layout;
+
+            }
+
+            //BOTON COPIAR PLANTILLAS
+            const btnCopy = document.querySelectorAll('.btn_copy_layout');
+            btnCopy.forEach(btn => {
+
+                btn.addEventListener('click', (event) => {
+                    //buscar form del botón
+                    const currentForm = event.target.closest('form');
+                    
+                    //terminar el proceso si el botón no está en un form
+                    if (!currentForm) return;
+
+                    // obtener datos del form y generar la plantilla con las funciones
+                    const formValues = getFormValues(currentForm);
+                    //return console.log(formValues);
+
+                    const FinalLayout = myTemplates(currentForm.id, formValues);
+
+                    // Copiar al portapapeles
+                    navigator.clipboard.writeText(FinalLayout)
+                        .then(() => Swal.fire({
+                            position: "top-end",
+                            width: 250,
+                            color: "#0a3622",
+                            background: "#a3cfbb",
+                            backdrop: false,
+                            html: "<span class='fw-bold'>¡Plantilla copiada exitosamente!</span>",
+                            showConfirmButton: false,
+                            timer: 1000
+                        }))
+                        .catch(err => console.error("Error al copiar: ", err));
+
+                });
+
+            });
+
+            //BOTON LIMPIAR FORMS
+            const btnClean = document.querySelectorAll('.btn-clean'); 
+            btnClean.forEach(btn => {
+
+                btn.addEventListener('click', (event) => {
+
+                    const currentForm = event.target.closest('form');
+                    if (currentForm) {
+                        currentForm.reset();
+                    }
+
+                    window.scrollTo({
+                        top: 0,
+                        behavior: 'smooth'
+                    });
+
+                });
+
+            });
+
+        });
+
+    </script>
+
+  </body>
+
+</html>
+
+

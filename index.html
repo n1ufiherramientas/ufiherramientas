@@ -322,7 +322,7 @@
                                         <option value = "Varias sedes">Varias sedes</option>
                                         <option value = "Masivo">Masivo</option>
                                     </select>
-                                    <label class="form-label">Alcance del impacto::</label>
+                                    <label class="form-label">Alcance del impacto:</label>
                                 </div>
                             </div>
 
@@ -343,8 +343,8 @@
 
                         <div class="form-floating mb-3">
                             <select role="button" class="form-select" id="in_hasBgp">
-                                <option value = "Si">Si</option>
                                 <option value = "No">No</option>
+                                <option value = "Si">Si</option>
                             </select>
                             <label class="form-label">¿Tiene BGP?</label>
                         </div>
@@ -423,7 +423,7 @@
                                     <option value="No identificado">No Identificado</option>
                                 </optgroup>
                             </select>
-                            <label class="form-label">Aplicación o tráfico afectado: </label>
+                            <label class="form-label">Aplicación o tráfico afectado:</label>
                         </div>
 
                         <div class="form-floating">
@@ -470,7 +470,7 @@
 
                                 <div class="form-floating">
                                     <input type="text" class="form-control" id="in_pwErrorDetail" placeholder="">
-                                    <label for="email">Error en VC/PW</label>
+                                    <label for="email">Error en VC/PW:</label>
                                 </div>
 
                             </div>
@@ -547,11 +547,6 @@
                                     <label class="form-label">Resultado comparativo ARP vs pseudowire:</label>
                                 </div>
 
-                                <div class="form-floating">
-                                    <textarea class="form-control" id="in_traceBviToPublic" placeholder=""></textarea>
-                                    <label>Traceroute desde la BVI / PE hacia destino público:</label>
-                                </div>
-
                             </div>
 
                             <div class="col">
@@ -576,6 +571,11 @@
                                 
                             </div>
 
+                        </div>
+
+                        <div class="form-floating">
+                            <textarea class="form-control" id="in_traceBviToPublic" placeholder=""></textarea>
+                            <label>Traceroute desde la BVI / PE hacia destino público:</label>
                         </div>
 
                     </div>
@@ -1238,6 +1238,51 @@
                         \n*Ingeniero N1:* ${data.in_n1eng1}
                         \n*Ingeniero N2:* Pendiente asignación`;
 
+                    break;
+
+                    case 'fm_n2_ct':
+
+                        let serviceType = data.check_n2CInternet ? "IP TRANSIT/INTERNET" : "CAPACIDAD/L2VPN";
+
+                        let caracterization = data.check_n2CInternet ? `\n\n*🔹--------CARACTERIZACIÓN--------*\n\n*Alcance del impacto:* ${data.in_impactScope || 'N/A'}\n*Tipo de afectación:* ${data.in_affectationType || 'N/A'}\n\n*¿Tiene BGP?:* ${data.in_hasBgp || 'N/A'}\n*Peer IPs:* ${data.in_peerIps || 'N/A'}\n*ASN cliente:* ${data.in_clientAsn || 'N/A'}\n*Estado sesión:* ${data.in_sessionStatus || 'N/A'}` : "";
+
+                        let edgeTest = data.check_n2CInternet ? `\n\n*Ping desde BVI/PE a IP aprendida por ARP(Cliente):*\n\n${data.in_pingBviToArp || 'N/A'}\n\n*Resultado comparativo ARP vs pseudowire:*  ${data.in_arpVsPwResult || 'N/A'}\n\n*Ping desde la BVI / PE a 8.8.8.8 u otro destino público:*\n\n${data.in_pingBviToPublic || 'N/A'}\n\n*Validación de alcance desde borde de red:* ${data.in_edgeReachabilit || 'N/A'}\n\n*Traceroute desde la BVI / PE hacia destino público:*\n\n${data.in_traceBviToPublic || 'N/A'}\n\n*🔹----------EVIDENCIA CLIENTE -------------*\n\n${data.in_clientEvidenceDetails || 'IMAGENENES ADJUNTAS'}` : "";
+
+                        layout = `*📋 Escalamiento N1 → N2 | Caída Total Servicio ${serviceType} | [VC ID]*
+                        \n\n*🔹---------MOTIVO ESCALACIÓN / OBSERVACIONES / PUNTOS DE INTERÉS ----------*
+                        \n${data.in_conclusionNotes || 'N/A'}               
+                        \n*🔹---------VALIDACIONES ACCESO / ÚLTIMA MILLA----------*             
+                        \n*Estado puerto cliente / UNI (A y B si aplica):*${data.in_clientPortStatus || 'N/A'}
+                        \n*¿Se descartó falla local básica en acceso? (Puerto Down / VLAN):* ${data.in_localFailureDiscard || 'N/A'}                      
+                        \n*Utilización (Speed):*
+                        \n ${data.in_utilizationSpeed || 'N/A'}
+                        \n*¿Hay CRC, drops, flaps?:* ${data.in_portErrors || 'N/A'}
+                        \n*🔹---------INFORMACIÓN DE IMPACTO----------*                      
+                        \n*Hora exacta de la prueba:* ${data.in_testExactTime || 'N/A'}                          
+                        \n*¿La caída continúa al momento del escalamiento?:* ${data.in_outageStatus || 'N/A'}${caracterization}   
+                        \n*🔹--------PRUEBAS DESDE EL CLIENTE / EXTREMOS-------*                   
+                        \n*Ping extremo A → B (Si Aplica):* 
+                        \n${data.in_pingAtoB || 'N/A'}                  
+                        \n*Ping extremo B → A (Si Aplica):*
+                        \n${data.in_pingBtoA || 'N/A'}                      
+                        \n*Aplicación o tráfico afectado:* ${data.in_affectedApp || 'N/A'}                      
+                        \n*Evidencia de caída total reportada por cliente:*
+                        \n${data.in_outageEvidence || 'IMAGENES ADJUNTAS'}     
+                        \n*🔹----------PRUEBAS DESDE LA RED / EDGE / PE -------------*          
+                        \n*Estado del pseudowire:* ${data.in_pwStatus || 'N/A'}
+                        \n*¿El pseudowire responde?:* ${data.in_pwResponse || 'N/A'}
+                        \n*Ping de prueba sobre pseudowire:*
+                        \n${data.in_pingOverPw || 'N/A'}
+                        \n*Error en VC/PW:* ${data.in_pwErrorDetail || 'N/A'}
+                        \n============================================================
+                        \n*Puertos Extremo A (Estado y VLAN):*
+                        \n ${data.in_portsEndA || 'N/A'}
+                        \n*¿Se observa tráfico (Pkts In/Out)?:* ${data.in_trafficpkts || 'N/A'}
+                        \n*Puertos Extremo B (Estado y VLAN):*
+                        \n ${data.in_portsEndB || 'N/A'}
+                        \n¿Se observa aprendizaje MAC?: ${data.in_macLearning || 'N/A'}
+                        \n============================================================${edgeTest}`;
+                    
                     break;
 
                     default:

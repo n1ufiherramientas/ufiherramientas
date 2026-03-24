@@ -1,68 +1,54 @@
 <!doctype html>
 <html lang="es">
 
-  <head>
-
+<head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
     <!-- ─── BOOTSTRAP ───────────────────────────────────────────────────────── -->
-    <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
-      rel="stylesheet"
-      integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB"
-      crossorigin="anonymous"
-    /> 
-    <script
-      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
-      integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
-      crossorigin="anonymous"
-    ></script>
-
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous" />
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
+        crossorigin="anonymous"></script>
     <!-- ─── SWEETALERT ───────────────────────────────────────────────────────── -->
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
     <title>NOC N1</title>
-
+    <link rel="icon" type="image/x-icon"
+        href="https://camacoes.org.gt/wp-content/uploads/2022/12/logo-ufinet-guatemala.jpg">
+    <!-- ─── ESTILOS PERSONALIZADOS ───────────────────────────────────────────────────────── -->
     <style type="text/css">
-      .bg-personalizate {
-        background-image: url("https://www.ufinet.com/wp-content/uploads/2024/01/bgUfinat2.png");
-        background-color: #f8f9fa;
-        background-position: center;
-        background-repeat: no-repeat;
-        background-size: contain;
-        min-height: calc(100vh - 60.64px);
-        width: 100vw;
-        padding: 40px;
-      }
-      .ufi-textarea{
-        height: unset !important;
-      }
-      .text-primary{
-        color: #004C88 !important;
-      }
+        .bg-personalizate {
+            background-image: url("https://www.ufinet.com/wp-content/uploads/2024/01/bgUfinat2.png");
+            background-color: #f8f9fa;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: contain;
+            min-height: calc(100vh - 60.64px);
+            width: 100vw;
+            padding: 40px;
+        }
 
+        .ufi-textarea {
+            height: unset !important;
+        }
+
+        .text-primary {
+            color: #004C88 !important;
+        }
     </style>
+</head>
 
-  </head>
-
-  <body>
-    <!-- ─── Navbar ──────────────────────────────────────────────────── -->
-     <nav class="navbar nav navbar-expand-sm bg-white navbar-light shadow-sm">
-
+<body>
+    <!-- ─── NAVBAR ───────────────────────────────────────────────── -->
+    <nav class="navbar nav navbar-expand-sm bg-white navbar-light shadow-sm">
         <div class="container">
-
             <a class="navbar-brand" href="https://www.ufinet.com/" target="_blank">
-            <img
-                src="https://kiodatacenters.com/hubfs/UFINET_WEB_FT_L.webp"
-                alt="Avatar Logo"
-                style="width: 60px"
-                class="rounded-pill"
-            />
+                <img src="https://kiodatacenters.com/hubfs/UFINET_WEB_FT_L.webp" alt="Avatar Logo" style="width: 60px"
+                    class="rounded-pill" />
             </a>
 
             <ul class="nav nav-pills">
-
                 <li class="nav-item">
                     <a class="nav-link active" data-bs-toggle="pill" href="#service_tab">Tablas TDC</a>
                 </li>
@@ -79,32 +65,27 @@
                         <li><a class="dropdown-item" href="#n2s_tab" data-bs-toggle="pill">Solicitudes/SSA</a></li>
                     </ul>
                 </li>
-                
+
                 <li class="nav-item">
                     <a class="nav-link" data-bs-toggle="pill" href="#layoutmail_tab">Plantilla Correo</a>
                 </li>
-
             </ul>
-
         </div>
-
     </nav>
-
-    <!-- Secciones -->
+    <!-- SECCIONES -->
     <div class="bg-personalizate d-flex justify-content-center align-items-center">
-
         <div class="tab-content">
-    
             <!-- ─── Plantilla correo cierres ────────────────────────────────────── -->
-            <section class="tab-pane container fade" id="layoutmail_tab"  style="width: 1000px;">
+            <section class="tab-pane container fade" id="layoutmail_tab" style="width: 1000px;">
 
                 <form id="fm_mailtemplate" class="bg-white p-5 rounded-4 shadow">
 
                     <h3 class="text-center mb-4 text-primary fw-bold">Generador de Respuesta Técnica</h3>
-                    
+
                     <div class="bg-light p-3 rounded-3 border mb-4">
 
-                        <h5 class="border-start border-4 border-primary mb-3"><span class="ms-2">ÚLTIMA MILLA (UM)</span></h5>
+                        <h5 class="border-start border-4 border-primary mb-3"><span class="ms-2">ÚLTIMA MILLA
+                                (UM)</span></h5>
 
                         <div class="row">
                             <div class="col">
@@ -112,7 +93,7 @@
                                     <textarea class="form-control" id="in_uptime" placeholder=""></textarea>
                                     <label>Uptime del equipo (CPE):</label>
                                 </div>
-                                 <div class="form-floating mb-3">
+                                <div class="form-floating mb-3">
                                     <textarea class="form-control" id="in_trafficlan" placeholder=""></textarea>
                                     <label>Tráfico actual en puerto LAN:</label>
                                 </div>
@@ -138,7 +119,8 @@
 
                     <div class="bg-light p-3 rounded-3 border mb-4">
 
-                        <h5 class="border-start border-4 border-primary mb-3"><span class="ms-2">RED MPLS CORE</span></h5>
+                        <h5 class="border-start border-4 border-primary mb-3"><span class="ms-2">RED MPLS CORE</span>
+                        </h5>
 
                         <div class="row">
 
@@ -162,7 +144,8 @@
 
                     <!-- ─── Check Internet ──────────── -->
                     <div class="form-check form-switch mb-3">
-                        <input id="check_content_internet" class="form-check-input" type="checkbox" name="darkmode" value="no" role="button">
+                        <input id="check_content_internet" class="form-check-input" type="checkbox" name="darkmode"
+                            value="no" role="button">
                         <label class="form-check-label" for="check_content_internet">CAPACIDAD</label>
                     </div>
 
@@ -195,7 +178,6 @@
                 </form>
 
             </section>
-
             <!-- ─── Plantillas Scripts correo ────────────────────────────────────── -->
             <section class="tab-pane container fade" id="scripts" style="width: 1000px;">
 
@@ -203,26 +185,26 @@
 
                     <h3 class="text-center text-primary fw-bold">Scripts N1</h3>
 
-                    <div class="form-floating my-3">
-                        <select role="button" id="miSelect" class="form-select w-100" id="">
-                            <option value = "">Selecciona el script</option>
-                        </select>
-                        <label class="form-label">Tipo Script:</label>
-                    </div>
+                    <label class="form-label">Tipo Script</label>
+                    <input role="button" class="form-control mb-3" list="list_scripts" id="in_scripts"
+                        placeholder="Selecciona el script...">
+                    <datalist id="list_scripts">
+                    </datalist>
 
                     <div class="form-floating mb-3">
-                        <textarea readonly id="out_script" class="form-control ufi-textarea bg-light" id="" placeholder="" rows="10"></textarea>
+                        <textarea readonly id="out_script" class="form-control ufi-textarea bg-light" id=""
+                            placeholder="" rows="10"></textarea>
                         <label>Comentario</label>
                     </div>
-                    
+
                     <div class="d-flex justify-content-end">
-                        <button type="button" class="btn btn-primary btn_copy_layout">Copiar Plantilla</button>
+                        <button type="button" class="btn btn-primary btn_copy_layout me-2">Copiar Script</button>
+                        <button type="button" class="btn btn-danger btn-clean">Reset</button>
                     </div>
 
                 </form>
 
             </section>
-
             <!-- ─── N2 Caída total ──────────────────────────────────────── -->
             <section class="tab-pane container fade" id="n2cc_tab" style="width: 1000px;">
 
@@ -239,7 +221,8 @@
                     <!-- ─── N1 – ACCESO / ÚLTIMA MILLA (COMÚN) ───────────── -->
                     <div class="bg-light p-3 rounded-3 border mb-4">
 
-                        <h5 class="border-start border-4 border-primary mb-3"><span class="ms-2">VALIDACIONES ACCESO / ÚLTIMA MILLA</span></h5>
+                        <h5 class="border-start border-4 border-primary mb-3"><span class="ms-2">VALIDACIONES ACCESO /
+                                ÚLTIMA MILLA</span></h5>
 
                         <div class="row">
 
@@ -252,10 +235,11 @@
 
                                 <div class="form-floating">
                                     <select role="button" class="form-select" id="in_localFailureDiscard">
-                                        <option value = "Si">Si</option>
-                                        <option value = "No">No</option>
+                                        <option value="Si">Si</option>
+                                        <option value="No">No</option>
                                     </select>
-                                    <label class="form-label">¿Se descartó falla local básica en acceso? (Puerto Down / VLAN)</label>
+                                    <label class="form-label">¿Se descartó falla local básica en acceso? (Puerto Down /
+                                        VLAN)</label>
                                 </div>
 
                             </div>
@@ -269,12 +253,12 @@
 
                                 <div class="form-floating mb-3">
                                     <select role="button" class="form-select" id="in_portErrors">
-                                        <option value = "No">No</option>
-                                        <option value = "Si">Si</option>
+                                        <option value="No">No</option>
+                                        <option value="Si">Si</option>
                                     </select>
                                     <label class="form-label">¿Hay CRC, drops, flaps?</label>
                                 </div>
-                                
+
                             </div>
 
                         </div>
@@ -284,7 +268,8 @@
                     <!-- ─── INFORMACIÓN DE IMPACTO (COMÚN) ───────────── -->
                     <div class="bg-light p-3 rounded-3 border mb-4">
 
-                        <h5 class="border-start border-4 border-primary mb-3"><span class="ms-2">INFORMACIÓN DE IMPACTO</span></h5>
+                        <h5 class="border-start border-4 border-primary mb-3"><span class="ms-2">INFORMACIÓN DE
+                                IMPACTO</span></h5>
 
                         <div class="row">
                             <div class="col">
@@ -296,8 +281,8 @@
                             <div class="col">
                                 <div class="form-floating">
                                     <select role="button" class="form-select" id="in_outageStatus">
-                                        <option value = "Si">Si</option>
-                                        <option value = "No">No</option>
+                                        <option value="Si">Si</option>
+                                        <option value="No">No</option>
                                     </select>
                                     <label class="form-label">¿La caída continúa al momento del escalamiento?:</label>
                                 </div>
@@ -309,18 +294,19 @@
                     <!-- ─── CARACTERIZACIÓN (INTERNET) ───────────── -->
                     <div class="content_n2int bg-light p-3 rounded-3 border mb-4 d-none">
 
-                        <h5 class="border-start border-4 border-primary mb-3"><span class="ms-2">CARACTERIZACIÓN</span></h5>
+                        <h5 class="border-start border-4 border-primary mb-3"><span class="ms-2">CARACTERIZACIÓN</span>
+                        </h5>
 
                         <div class="row mb-3">
 
                             <div class="col">
                                 <div class="form-floating">
                                     <select role="button" class="form-select" id="in_impactScope">
-                                        <option value = "Un usuario">Un usuario</option>
-                                        <option value = "Varios usuarios">Varios usuarios</option>
-                                        <option value = "Toda la sede">Toda la sede</option>
-                                        <option value = "Varias sedes">Varias sedes</option>
-                                        <option value = "Masivo">Masivo</option>
+                                        <option value="Un usuario">Un usuario</option>
+                                        <option value="Varios usuarios">Varios usuarios</option>
+                                        <option value="Toda la sede">Toda la sede</option>
+                                        <option value="Varias sedes">Varias sedes</option>
+                                        <option value="Masivo">Masivo</option>
                                     </select>
                                     <label class="form-label">Alcance del impacto:</label>
                                 </div>
@@ -329,11 +315,12 @@
                             <div class="col">
                                 <div class="form-floating">
                                     <select role="button" class="form-select" id="in_affectationType">
-                                        <option value = "Sin navegación">Sin navegación</option>
-                                        <option value = "Sin respuesta a ningún destinos">Sin respuesta destino especifico</option>
-                                        <option value = "Sin DNS">Sin DNS</option>
-                                        <option value = "Sin gateway">Sin gateway</option>
-                                        <option value = "BGP down">BGP down</option>
+                                        <option value="Sin navegación">Sin navegación</option>
+                                        <option value="Sin respuesta a ningún destinos">Sin respuesta destino especifico
+                                        </option>
+                                        <option value="Sin DNS">Sin DNS</option>
+                                        <option value="Sin gateway">Sin gateway</option>
+                                        <option value="BGP down">BGP down</option>
                                     </select>
                                     <label class="form-label">Tipo de afectación:</label>
                                 </div>
@@ -343,8 +330,8 @@
 
                         <div class="form-floating mb-3">
                             <select role="button" class="form-select" id="in_hasBgp">
-                                <option value = "No">No</option>
-                                <option value = "Si">Si</option>
+                                <option value="No">No</option>
+                                <option value="Si">Si</option>
                             </select>
                             <label class="form-label">¿Tiene BGP?</label>
                         </div>
@@ -368,9 +355,9 @@
                             <div class="col">
                                 <div class="form-floating">
                                     <select role="button" class="form-select" id="in_sessionStatus">
-                                        <option value = "Up">Up</option>
-                                        <option value = "Downo">Down</option>
-                                        <option value = "Intermitente">Intermitente</option>
+                                        <option value="Up">Up</option>
+                                        <option value="Downo">Down</option>
+                                        <option value="Intermitente">Intermitente</option>
                                     </select>
                                     <label class="form-label">Estado sesión:</label>
                                 </div>
@@ -383,7 +370,8 @@
                     <!-- ─── PRUEBAS DESDE EL CLIENTE / EXTREMOS (CAPACIDAD) ───────────── -->
                     <div class="content_n2cap bg-light p-3 rounded-3 border mb-4">
 
-                        <h5 class="border-start border-4 border-primary mb-3"><span class="ms-2">PRUEBAS DESDE EL CLIENTE / EXTREMOS</span></h5>
+                        <h5 class="border-start border-4 border-primary mb-3"><span class="ms-2">PRUEBAS DESDE EL
+                                CLIENTE / EXTREMOS</span></h5>
 
                         <div class="row mb-3">
 
@@ -413,13 +401,15 @@
                                 </optgroup>
                                 <optgroup label="Servicios de Datos y Gestión">
                                     <option value="WEB">Navegación General (HTTP/HTTPS)</option>
-                                    <option value="Aplicaciones de Negocio">Aplicaciones de Negocio (SAP, Oracle, CRM)</option>
+                                    <option value="Aplicaciones de Negocio">Aplicaciones de Negocio (SAP, Oracle, CRM)
+                                    </option>
                                     <option value="BD">Replicación de Bases de Datos</option>
                                     <option value="MGMT">Tráfico de Gestión (SNMP, SSH, ICMP)</option>
                                 </optgroup>
                                 <optgroup label="Otros">
                                     <option value="(FTP/SFTP)">Transferencia de Archivos / Backups (FTP/SFTP)</option>
-                                    <option value="Tráfico Multiservicio">Tráfico Multiservicio (Internet Residencial/Corporativo)</option>
+                                    <option value="Tráfico Multiservicio">Tráfico Multiservicio (Internet
+                                        Residencial/Corporativo)</option>
                                     <option value="No identificado">No Identificado</option>
                                 </optgroup>
                             </select>
@@ -427,7 +417,8 @@
                         </div>
 
                         <div class="form-floating">
-                            <textarea class="form-control ufi-textarea" id="in_outageEvidence" placeholder="" rows="2"></textarea>
+                            <textarea class="form-control ufi-textarea" id="in_outageEvidence" placeholder=""
+                                rows="2"></textarea>
                             <label>Evidencia de caída total reportada por cliente:</label>
                         </div>
 
@@ -436,7 +427,8 @@
                     <!-- ─── PRUEBAS MPLS (COMÚN) ───────────── -->
                     <div class="bg-light p-3 rounded-3 border mb-4">
 
-                        <h5 class="border-start border-4 border-primary mb-3"><span class="ms-2">PRUEBAS DESDE LA RED / EDGE / PE</span></h5>
+                        <h5 class="border-start border-4 border-primary mb-3"><span class="ms-2">PRUEBAS DESDE LA RED /
+                                EDGE / PE</span></h5>
 
                         <div class="row">
 
@@ -444,17 +436,17 @@
 
                                 <div class="form-floating mb-3">
                                     <select role="button" class="form-select" id="in_pwStatus">
-                                        <option value = "Up">Up</option>
-                                        <option value = "Down">Down</option>
-                                        <option value = "Admin Down">Admin Down</option>
+                                        <option value="Up">Up</option>
+                                        <option value="Down">Down</option>
+                                        <option value="Admin Down">Admin Down</option>
                                     </select>
                                     <label class="form-label">Estado del pseudowire:</label>
                                 </div>
 
                                 <div class="form-floating">
                                     <select role="button" class="form-select" id="in_pwResponse">
-                                        <option value = "Si">Si</option>
-                                        <option value = "No">No</option>
+                                        <option value="Si">Si</option>
+                                        <option value="No">No</option>
                                     </select>
                                     <label class="form-label">¿El pseudowire responde?:</label>
                                 </div>
@@ -493,8 +485,8 @@
 
                                 <div class="form-floating">
                                     <select role="button" class="form-select" id="in_trafficpkts">
-                                        <option value = "Si">Si</option>
-                                        <option value = "No">No</option>
+                                        <option value="Si">Si</option>
+                                        <option value="No">No</option>
                                     </select>
                                     <label class="form-label">¿Se observa tráfico (Pkts In/Out)?</label>
                                 </div>
@@ -510,9 +502,9 @@
 
                                 <div class="form-floating">
                                     <select role="button" class="form-select" id="in_macLearning">
-                                        <option value = "Si">Si</option>
-                                        <option value = "No">No</option>
-                                        <option value = "N/A">No Aplica</option>
+                                        <option value="Si">Si</option>
+                                        <option value="No">No</option>
+                                        <option value="N/A">No Aplica</option>
                                     </select>
                                     <label class="form-label">¿Se observa aprendizaje MAC?</label>
                                 </div>
@@ -538,11 +530,13 @@
 
                                 <div class="form-floating mb-3">
                                     <select role="button" class="form-select" id="in_arpVsPwResult">
-                                        <option value = "Responden ambos">Responden ambos</option>
-                                        <option value = "Responde ARP, no responde pseudowire">Responde ARP, no responde pseudowire</option>
-                                        <option value = "Responde pseudowire, no responde ARP">Responde pseudowire, no responde ARP</option>
-                                        <option value = "No responde ningun">No responde ningun</option>
-                                        <option value = "Respuesta intermitente">Respuesta intermitente</option>
+                                        <option value="Responden ambos">Responden ambos</option>
+                                        <option value="Responde ARP, no responde pseudowire">Responde ARP, no responde
+                                            pseudowire</option>
+                                        <option value="Responde pseudowire, no responde ARP">Responde pseudowire, no
+                                            responde ARP</option>
+                                        <option value="No responde ningun">No responde ningun</option>
+                                        <option value="Respuesta intermitente">Respuesta intermitente</option>
                                     </select>
                                     <label class="form-label">Resultado comparativo ARP vs pseudowire:</label>
                                 </div>
@@ -558,17 +552,20 @@
 
                                 <div class="form-floating">
                                     <select role="button" class="form-select" id="in_edgeReachability">
-                                        <option value = "No hay alcance ni al cliente ni al destino externo">Hay alcance al cliente y al destino externo</option>
-                                        <option value = "No hay alcance al client">No hay alcance al cliente</option>
-                                        <option value = "Hay alcance a internet pero no al cliente">Hay alcance a internet pero no al cliente</option>
-                                        <option value = "No hay alcance ni al cliente ni al destino externo">No hay alcance ni al cliente ni al destino externo</option>
-                                        <option value = "Intermitente al cliente">Intermitente al cliente</option>
-                                        <option value = "Intermitente a internet">Intermitente a internet</option>
+                                        <option value="Hay alcance al cliente y al destino externo">Hay alcance al
+                                            cliente y al destino externo</option>
+                                        <option value="No hay alcance al client">No hay alcance al cliente</option>
+                                        <option value="Hay alcance a internet pero no al cliente">Hay alcance a internet
+                                            pero no al cliente</option>
+                                        <option value="No hay alcance ni al cliente ni al destino externo">No hay
+                                            alcance ni al cliente ni al destino externo</option>
+                                        <option value="Intermitente al cliente">Intermitente al cliente</option>
+                                        <option value="Intermitente a internet">Intermitente a internet</option>
                                     </select>
                                     <label class="form-label">Validación de alcance desde borde de red:</label>
                                 </div>
 
-                                
+
                             </div>
 
                         </div>
@@ -583,7 +580,8 @@
                     <!-- ─── EVIDENCIA CLIENTE (INTERNET) ───────────── -->
                     <div class="content_n2int bg-light p-3 rounded-3 border mb-4 d-none">
 
-                        <h5 class="border-start border-4 border-primary mb-3"><span class="ms-2">EVIDENCIA CLIENTE</span></h5>
+                        <h5 class="border-start border-4 border-primary mb-3"><span class="ms-2">EVIDENCIA
+                                CLIENTE</span></h5>
 
                         <p class="text-danger">Si la evidencia son imagenes dejar campo vacio</p>
 
@@ -595,7 +593,8 @@
                             <li>Mensaje de error exacto / Evidencia adicional:</li>
                         </ul>
 
-                        <textarea class="form-control" rows="3" id="in_clientEvidenceDetails" placeholder="Detalles..."></textarea>
+                        <textarea class="form-control" rows="3" id="in_clientEvidenceDetails"
+                            placeholder="Detalles..."></textarea>
 
                     </div>
 
@@ -605,7 +604,8 @@
                         <h5 class="border-start border-4 border-primary mb-3"><span class="ms-2">CONCLUSIÓN</span></h5>
 
                         <label>Motivo de escalación, observaciones y puntos de interés:</label>
-                        <textarea class="form-control" rows="3" id="in_conclusionNotes" placeholder="Detalles..."></textarea>
+                        <textarea class="form-control" rows="3" id="in_conclusionNotes"
+                            placeholder="Detalles..."></textarea>
 
                     </div>
 
@@ -615,27 +615,29 @@
                 </form>
 
             </section>
-
             <!-- ─── N2 Degradación (FALTA) ──────────────────────────────────────── -->
-            <div class="tab-pane container fade" id="n2ci_tab">N2DC</div>
-
+            <div class="tab-pane container fade" id="n2ci_tab">
+                N2DC
+            </div>
             <!-- ─── N2 solicitudes (IP/TX) ──────────────────────────────────────── -->
             <div class="tab-pane container fade" id="n2s_tab" style="width: 1000px;">
 
                 <form id="fm_n2s_tab" class="bg-white p-5 rounded-4 shadow">
 
-                    <h3 class="text-center mb-4 text-primary fw-bold">Escalamiento N1 → N2 Solicitudes | Motivos | Consultas</h3>
+                    <h3 class="text-center mb-4 text-primary fw-bold">Escalamiento N1 → N2 Solicitudes | Motivos |
+                        Consultas</h3>
 
                     <!-- ─── CHECK ───────────── -->
                     <div class="form-check form-switch mb-3">
                         <input id="check_n2SSA" class="form-check-input" type="checkbox" value="no" role="button">
                         <label class="form-check-label" for="check_n2SSA">IP</label>
                     </div>
-                    
+
                     <!-- ─── DATOS CLIENTE ───────────── -->
                     <div class="bg-light p-3 rounded-3 border mb-4">
 
-                        <h5 class="border-start border-4 border-primary mb-3"><span class="ms-2">Datos Cliente</span></h5>
+                        <h5 class="border-start border-4 border-primary mb-3"><span class="ms-2">Datos Cliente</span>
+                        </h5>
 
                         <div class="row">
                             <div class="col">
@@ -657,7 +659,8 @@
                     <!-- ─── INFORMACIÓN TECNICA ───────────── -->
                     <div class="bg-light p-3 rounded-3 border mb-4 d-none" id="content_n2tecdata">
 
-                        <h5 class="border-start border-4 border-primary mb-3"><span class="ms-2">INFORMACIÓN TECNICA</span></h5>
+                        <h5 class="border-start border-4 border-primary mb-3"><span class="ms-2">INFORMACIÓN
+                                TECNICA</span></h5>
 
                         <div class="row">
                             <div class="col">
@@ -685,15 +688,16 @@
                     <!-- ─── DATOS IMPORTANTES ───────────── -->
                     <div class="bg-light p-3 rounded-3 border mb-4">
 
-                        <h5 class="border-start border-4 border-primary mb-3"><span class="ms-2">Tipo de Falla</span></h5>
+                        <h5 class="border-start border-4 border-primary mb-3"><span class="ms-2">Tipo de Falla</span>
+                        </h5>
 
                         <div class="row mb-3">
                             <div class="col">
                                 <div class="form-floating">
                                     <select role="button" class="form-select" id="in_failtype1">
-                                        <option value = "Caída Total">Caída Total</option>
-                                        <option value = "Degradación">Degradación</option>
-                                        <option value = "Sin servicio afectado">Sin servicio afectado</option>
+                                        <option value="Caída Total">Caída Total</option>
+                                        <option value="Degradación">Degradación</option>
+                                        <option value="Sin servicio afectado">Sin servicio afectado</option>
                                     </select>
                                     <label class="form-label">Tipo de falla:</label>
                                 </div>
@@ -706,23 +710,26 @@
 
                     <!-- ─── REPORTE CLIENTE ───────────── -->
                     <div class="bg-light p-3 rounded-3 border mb-4">
-                        
-                        <h5 class="border-start border-4 border-primary mb-3"><span class="ms-2">Reporte del cliente</span></h5>
+
+                        <h5 class="border-start border-4 border-primary mb-3"><span class="ms-2">Reporte del
+                                cliente</span></h5>
 
                         <div class="form-floating">
-                            <textarea class="form-control ufi-textarea" id="in_reportecliente" placeholder="" rows="8"></textarea>
+                            <textarea class="form-control ufi-textarea" id="in_reportecliente" placeholder=""
+                                rows="8"></textarea>
                             <label>Reporte del cliente:</label>
                         </div>
 
                     </div>
-                    
+
                     <!-- ─── DIAGNOSTICO ───────────── -->
                     <div class="bg-light p-3 rounded-3 border mb-4" id="content_n2valn1">
 
                         <h5 class="border-start border-4 border-primary mb-3"><span class="ms-2">Diagnóstico</span></h5>
 
                         <div class="form-floating">
-                            <textarea class="form-control ufi-textarea" id="in_n1validation1" placeholder="" rows="8"></textarea>
+                            <textarea class="form-control ufi-textarea" id="in_n1validation1" placeholder=""
+                                rows="8"></textarea>
                             <label>Diagnóstico N1:</label>
                         </div>
 
@@ -734,7 +741,8 @@
                         <h5 class="border-start border-4 border-primary mb-3"><span class="ms-2">Asignación</span></h5>
 
                         <label class="form-label">Ingeniero N1:</label>
-                        <input role="button" class="form-control" list="list_n1eng" id="in_n1eng1" placeholder="Seleccione un nombre...">
+                        <input role="button" class="form-control" list="list_n1eng" id="in_n1eng1"
+                            placeholder="Seleccione un nombre...">
                         <datalist class="n1-selector" id="list_n1eng">
                         </datalist>
 
@@ -746,18 +754,18 @@
                 </form>
 
             </div>
-
             <!-- ─── TORRE DE CONTROL ──────────────────────────────────────── -->
-            <section class="tab-pane container active" id="service_tab"  style="width: 1000px;">
+            <section class="tab-pane container active" id="service_tab" style="width: 1000px;">
 
                 <form id="fm_tdc" class="bg-white p-5 rounded-4 shadow">
 
                     <h3 class="text-center mb-4 text-primary fw-bold">Escalación Torre de Control</h3>
-                    
+
                     <!-- ─── DATOS CLIENTE ───────────── -->
                     <div class="bg-light p-3 rounded-3 border mb-4">
 
-                        <h5 class="border-start border-4 border-primary mb-3"><span class="ms-2">DATOS CLIENTE</span></h5>
+                        <h5 class="border-start border-4 border-primary mb-3"><span class="ms-2">DATOS CLIENTE</span>
+                        </h5>
 
                         <div class="row">
                             <div class="col">
@@ -782,35 +790,41 @@
 
                     <!-- ─── CHECK MASIVA ───────────── -->
                     <div class="form-check form-switch mb-3">
-                        <input id="check_content_masiva" class="form-check-input" type="checkbox" name="darkmode" value="no" role="button">
+                        <input id="check_content_masiva" class="form-check-input" type="checkbox" name="darkmode"
+                            value="no" role="button">
                         <label class="form-check-label" for="check_content_masiva">INDIVIDUAL</label>
                     </div>
-                    
+
                     <!-- ─── DATOS DE CONTACTO ───────────── -->
                     <div id="content_visita" class="bg-light p-3 rounded-3 border mb-4">
-                        
-                        <h5 class="border-start border-4 border-primary mb-3"><span class="ms-2">DATOS DE CONTACTO</span></h5>
+
+                        <h5 class="border-start border-4 border-primary mb-3"><span class="ms-2">DATOS DE
+                                CONTACTO</span></h5>
 
                         <div class="row">
 
                             <div class="col">
                                 <div class="form-floating mb-3">
-                                    <input type="text" class="form-control" id="in_contactname" placeholder="" value="Por confirmar">
+                                    <input type="text" class="form-control" id="in_contactname" placeholder=""
+                                        value="Por confirmar">
                                     <label>Nombre de contacto en sitio:</label>
                                 </div>
                                 <div class="form-floating">
-                                    <input type="text" class="form-control" id="in_contactaddress" placeholder="" value="Por confirmar">
+                                    <input type="text" class="form-control" id="in_contactaddress" placeholder=""
+                                        value="Por confirmar">
                                     <label>Dirección:</label>
                                 </div>
                             </div>
 
                             <div class="col">
                                 <div class="form-floating mb-3">
-                                    <input type="text" class="form-control" id="in_contactnumber" placeholder="" value="Por confirmar">
+                                    <input type="text" class="form-control" id="in_contactnumber" placeholder=""
+                                        value="Por confirmar">
                                     <label>Número de contacto:</label>
                                 </div>
                                 <div class="form-floating">
-                                    <input type="text" class="form-control" id="in_contactschedule" placeholder="" value="Por confirmar">
+                                    <input type="text" class="form-control" id="in_contactschedule" placeholder=""
+                                        value="Por confirmar">
                                     <label>Horarios:</label>
                                 </div>
                             </div>
@@ -822,23 +836,24 @@
                     <!-- ─── DATOS IMPORTANTES ───────────── -->
                     <div id="content_datos_imp" class="bg-light p-3 rounded-3 border mb-4">
 
-                        <h5 class="border-start border-4 border-primary mb-3"><span class="ms-2">DATOS IMPORTANTES</span></h5>
+                        <h5 class="border-start border-4 border-primary mb-3"><span class="ms-2">DATOS
+                                IMPORTANTES</span></h5>
 
                         <div class="row mb-3">
 
                             <div class="col">
                                 <div class="form-floating mb-3">
                                     <select role="button" class="form-select" id="in_failtype">
-                                        <option value = "Caída total">Caída</option>
-                                        <option value = "Degradación">Degradación</option>
-                                        <option value = "Sin servicio afectado">Sin servicio afectado</option>
+                                        <option value="Caída total">Caída</option>
+                                        <option value="Degradación">Degradación</option>
+                                        <option value="Sin servicio afectado">Sin servicio afectado</option>
                                     </select>
                                     <label class="form-label">Tipo de falla:</label>
                                 </div>
                                 <div class="form-floating">
                                     <select role="button" class="form-select" id="in_alarm">
-                                        <option value = "no">No</option>
-                                        <option value = "si">Si</option>
+                                        <option value="no">No</option>
+                                        <option value="si">Si</option>
                                     </select>
                                     <label class="form-label">Alarma de Dying Gasp:</label>
                                 </div>
@@ -847,9 +862,9 @@
                             <div class="col">
                                 <div class="form-floating mb-3">
                                     <select role="button" class="form-select" id="in_discards">
-                                        <option value = "no">No</option>
-                                        <option value = "si">Si</option>
-                                        <option value = "verbales">Verbales</option>
+                                        <option value="no">No</option>
+                                        <option value="si">Si</option>
+                                        <option value="verbales">Verbales</option>
                                     </select>
                                     <label class="form-label">Descartes 1er nivel:</label>
                                 </div>
@@ -860,12 +875,12 @@
                             </div>
 
                         </div>
-                        
+
                         <div class="form-floating">
                             <select role="button" class="form-select" id="in_topology">
-                                <option value = "no">No</option>
-                                <option value = "si">Si</option>
-                                <option value = "ring">Anillo</option>
+                                <option value="no">No</option>
+                                <option value="si">Si</option>
+                                <option value="ring">Anillo</option>
                             </select>
                             <label class="form-label">Bus/Anillo:</label>
                         </div>
@@ -874,8 +889,9 @@
 
                     <!-- ─── INFORMACIÓN TECNICA ───────────── -->
                     <div class="bg-light p-3 rounded-3 border mb-4">
-                        
-                        <h5 class="border-start border-4 border-primary mb-3"><span class="ms-2">INFORMACIÓN TÉCNICA</span></h5>
+
+                        <h5 class="border-start border-4 border-primary mb-3"><span class="ms-2">INFORMACIÓN
+                                TÉCNICA</span></h5>
 
                         <div class="row">
                             <div class="col">
@@ -901,14 +917,15 @@
                         </div>
 
                     </div>
-                    
+
                     <!-- ─── DIAGNOSTICO ───────────── -->
                     <div class="bg-light p-3 rounded-3 border mb-4">
 
                         <h5 class="border-start border-4 border-primary mb-3"><span class="ms-2">DIAGNOSTICO</span></h5>
 
                         <div class="form-floating">
-                            <textarea class="form-control ufi-textarea" id="in_n1validation" placeholder="" rows="8"></textarea>
+                            <textarea class="form-control ufi-textarea" id="in_n1validation" placeholder=""
+                                rows="8"></textarea>
                             <label>Diagnóstico N1:</label>
                         </div>
 
@@ -920,7 +937,8 @@
                         <h5 class="border-start border-4 border-primary mb-3"><span class="ms-2">ASIGNACIÓN</span></h5>
 
                         <label class="form-label">Ingeniero N1:</label>
-                        <input role="button" class="form-control" list="list_n1eng" id="in_n1eng" placeholder="Seleccione un nombre...">
+                        <input role="button" class="form-control" list="list_n1eng" id="in_n1eng"
+                            placeholder="Seleccione un nombre...">
                         <datalist class="n1-selector" id="list_n1eng">
                         </datalist>
 
@@ -932,15 +950,11 @@
                 </form>
 
             </section>
-        
-        </div> 
-
+        </div>
     </div>
-
+    <!-- JS -->
     <script>
-        
-        document.addEventListener("DOMContentLoaded", function() {
-
+        document.addEventListener("DOMContentLoaded", function () {
             // LISTADO N1
             const nombres = [
                 "A. Felipe Osorio Herrera",
@@ -999,18 +1013,19 @@
                     const todosLosDatos = await respuesta.json();
 
                     // Guardamos los datos omitiendo el encabezado (fila 1)
-                    datosGlobales = todosLosDatos.slice(1); 
+                    datosGlobales = todosLosDatos.slice(1);
 
-                    const select = document.getElementById('miSelect');
-                    select.innerHTML = '<option value="">Selecciona el script</option>';
+                    // Apuntamos al datalist en lugar del select
+                    const datalist = document.getElementById('list_scripts');
+                    datalist.innerHTML = ''; // Limpiamos el datalist por si acaso
 
-                    // Llenamos el select solo con la primera columna
-                    datosGlobales.forEach((fila, index) => {
+                    // Llenamos el datalist
+                    datosGlobales.forEach((fila) => {
                         if (fila[0]) {
                             let opt = document.createElement('option');
-                            opt.value = index; // Usamos el índice para encontrarlo luego
-                            opt.innerHTML = fila[0];
-                            select.appendChild(opt);
+                            // En un datalist, el value es lo que se muestra y lo que se captura en el input
+                            opt.value = fila[0];
+                            datalist.appendChild(opt);
                         }
                     });
 
@@ -1020,19 +1035,25 @@
                 }
             }
 
-            document.getElementById('miSelect').addEventListener('change', function(e) {
-                const index = e.target.value;
+            document.getElementById('in_scripts').addEventListener('input', function (e) {
+                const valorSeleccionado = e.target.value; // Este es el texto exacto del script
                 const textarea = document.getElementById('out_script');
 
-                if (index !== "") {
-                const filaSeleccionada = datosGlobales[index];
+                if (valorSeleccionado !== "") {
+                    // Buscamos la fila dentro del array donde la columna 1 coincida con el texto del input
+                    const filaSeleccionada = datosGlobales.find(fila => fila[0] === valorSeleccionado);
 
-                    // filaSeleccionada[1] extrae solo lo que hay en la segunda columba del Excel
-                    // Si la celda está vacía, mostrará un mensaje o quedará en blanco
-                    textarea.value = filaSeleccionada[1] || "Sin datos en esta columna";
+                    if (filaSeleccionada) {
+                        // Si la encuentra, ponemos la segunda columna en el textarea
+                        textarea.value = filaSeleccionada[1] || "Sin datos en esta columna";
+                    } else {
+                        // Si el usuario teclea algo que no coincide con la lista, limpiamos o mostramos mensaje
+                        textarea.value = "";
+                    }
                 } else {
                     textarea.value = "";
                 }
+
             });
 
             cargarDatos();
@@ -1054,7 +1075,7 @@
                 divsCapacidad: document.querySelectorAll('.content_n2cap')
             };
 
-           /*  OCULTAR | MOSTAR DIVS */
+            /*  OCULTAR | MOSTAR DIVS */
             function setupCheckbox(checkbox, elsToShow, elsToHide, textOn, textOff) {
                 if (!checkbox) return;
 
@@ -1082,7 +1103,7 @@
                 updateState(checkbox.checked);
 
                 // Escuchar cambios futuros
-                checkbox.addEventListener('change', function() {
+                checkbox.addEventListener('change', function () {
                     updateState(this.checked);
                 });
             }
@@ -1099,7 +1120,7 @@
 
                 const data = {};
                 const dataInputs = formElement.querySelectorAll('input, select, textarea');
-            
+
                 dataInputs.forEach(el => {
                     if (el.id) {
                         if (el.type === 'checkbox') {
@@ -1118,46 +1139,46 @@
 
                 let layout = "";
 
-                switch(formId) {
+                switch (formId) {
 
                     case 'fm_tdc':
 
                         layout = `*📋 TABLA DE ESCALAMIENTO TORRE DE CONTROL / OYM LATAM*
 
-                        \n*🔹---------DATOS CLIENTE----------*
-                        \n*Número de ticket:* ${data.in_noticket || 'N/A'}
-                        \n*ID:* ${data.in_id || 'N/A'}
-                        \n*Tipo de afectación:* ${data.in_failtype || 'N/A'}
-                        \n*Cliente final:* ${data.in_endcustomer || 'N/A'}`;
+                            \n*🔹---------DATOS CLIENTE----------*
+                            \n*Número de ticket:* ${data.in_noticket || 'N/A'}
+                            \n*ID:* ${data.in_id || 'N/A'}
+                            \n*Tipo de afectación:* ${data.in_failtype || 'N/A'}
+                            \n*Cliente final:* ${data.in_endcustomer || 'N/A'}`;
 
                         if (!data.check_content_masiva) {
                             layout += `\n\n*🔹---------DATOS VISITA----------*
-                            \n*Nombre de contacto:* ${data.in_contactname || 'N/A'}
-                            \n*Número de contacto:* ${data.in_contactnumber || 'N/A'}
-                            \n*Horario de visita:* ${data.in_contactschedule || 'N/A'}
-                            \n*Dirección:* ${data.in_contactaddress || 'N/A'}
-                            \n\n*🔹--------DATOS IMPORTANTES--------*
-                            \n*Descartes 1er nivel:* ${data.in_discards || 'N/A'}
-                            \n*Alarma de Dyan Gasp:* ${data.in_alarm || 'N/A'}
-                            \n*Fecha alarma DG:* ${data.in_alarmdate || 'N/A'}
-                            \n*Bus (Sí/No):* ${data.in_topology || 'N/A'}
-                            `;
+                                \n*Nombre de contacto:* ${data.in_contactname || 'N/A'}
+                                \n*Número de contacto:* ${data.in_contactnumber || 'N/A'}
+                                \n*Horario de visita:* ${data.in_contactschedule || 'N/A'}
+                                \n*Dirección:* ${data.in_contactaddress || 'N/A'}
+                                \n\n*🔹--------DATOS IMPORTANTES--------*
+                                \n*Descartes 1er nivel:* ${data.in_discards || 'N/A'}
+                                \n*Alarma de Dyan Gasp:* ${data.in_alarm || 'N/A'}
+                                \n*Fecha alarma DG:* ${data.in_alarmdate || 'N/A'}
+                                \n*Bus (Sí/No):* ${data.in_topology || 'N/A'}
+                                `;
                         }
 
                         layout += `\n\n*🔹--------INFORMACIÓN TÉCNICA-------*
-                        \n*Nodo acceso destino:* ${data.in_nodename || 'N/A'}
-                        \n*Equipo acceso destino:* ${data.in_accesshn || 'N/A'}
-                        \n*Puerto acceso destino:* ${data.in_accessport || 'N/A'}
-                        \n*IP acceso destino:* ${data.in_mgtip || 'N/A'}
+                            \n*Nodo acceso destino:* ${data.in_nodename || 'N/A'}
+                            \n*Equipo acceso destino:* ${data.in_accesshn || 'N/A'}
+                            \n*Puerto acceso destino:* ${data.in_accessport || 'N/A'}
+                            \n*IP acceso destino:* ${data.in_mgtip || 'N/A'}
 
-                        \n*🔹----------DIAGNÓSTICO-------------*
-                        \n${data.in_n1validation || 'N/A'}
+                            \n*🔹----------DIAGNÓSTICO-------------*
+                            \n${data.in_n1validation || 'N/A'}
 
-                        \n*🔹----------ASIGNACIÓN-------------*
-                        \n*Ingeniero N1:* ${data.in_n1eng || 'N/A'}
-                        \n*Ingeniero TdC:* @`;
+                            \n*🔹----------ASIGNACIÓN-------------*
+                            \n*Ingeniero N1:* ${data.in_n1eng || 'N/A'}
+                            \n*Ingeniero TdC:* @`;
 
-                    break;
+                        break;
 
                     case 'fm_n1scripts':
                         layout = data.out_script;
@@ -1169,121 +1190,108 @@
 
                         if (data.check_content_internet) {
                             internetData = `\n*VALIDACIÓN CAPA 3*
-                            \nTabla ARP aprendida en equipo de borde: ${data.in_arp || 'N/A'}
-                            \nPrueba de conectividad hacia IP del cliente - Ping desde nuestro Gateway:
-                            \n${data.in_pingcustomer || 'N/A'}
-                            \nPrueba de salida a Internet - Ping hacia DNS público (8.8.8.8):
-                            \n${data.in_pingoogle || 'N/A'}`;
+                                \nTabla ARP aprendida en equipo de borde: ${data.in_arp || 'N/A'}
+                                \nPrueba de conectividad hacia IP del cliente - Ping desde nuestro Gateway:
+                                \n${data.in_pingcustomer || 'N/A'}
+                                \nPrueba de salida a Internet - Ping hacia DNS público (8.8.8.8):
+                                \n${data.in_pingoogle || 'N/A'}`;
                         }
 
                         layout = `Estimado cliente.
-                        \nReciban un cordial saludo.
-                        \nHemos revisado el incidente reportado sobre la posible afectación del servicio. Se realizó una verificación completa de extremo a extremo sobre el enlace, incluyendo validaciones en la última milla, equipos de acceso y red core.
-                        \nDe acuerdo con nuestros sistemas de monitoreo y las pruebas realizadas por el equipo técnico, el servicio actualmente se encuentra OPERATIVO y ESTABLE.
-                        \nNo se evidencian caídas activas, pérdida de conectividad ni degradación dentro de nuestra infraestructura.
-                        \nA continuación, compartimos las verificaciones realizadas y las evidencias técnicas correspondientes.
-                        
-                        \n*VALIDACIONES DE ÚLTIMA MILLA (UM)*
-                        \n- Estado del equipo demarcador (CPE) - Uptime del equipo:
-                        \n${data.in_uptime || 'N/A'}
-                        \n- MAC Address aprendidas en ambos extremos (Cliente / Interconexión):
-                        \n${data.in_mac || 'N/A'}
-                        \n- Tráfico actual en puerto LAN:
-                        \n${data.in_trafficlan || 'N/A'}
-                        \n- Niveles de potencia óptica (Puerto Nodo – Cliente) RX / TX:
-                        \n${data.in_nodepower || 'N/A'}
-                        \n- Histórico de eventos del puerto (Flapping / Caídas):
-                        \n${data.in_nodeflap || 'N/A'}
-                        
-                        \n*VALIDACIONES RED MPLS CORE*
-                        \n- Estado de la etiqueta VC / Pseudowire - Tiempo desde el último cambio:
-                        \n${data.in_vcflap || 'N/A'}
-                        \n- Prueba de conectividad sobre VC - Ping entre routers peer sobre la etiqueta VC:
-                        \nParámetros de prueba:
-                        \n• Repeticiones: 1500
-                        \n• Tamaño de paquete: 1500 bytes
-                        \nResultado:
-                        \n${data.in_pingvc || 'N/A'}
+                            \nReciban un cordial saludo.
+                            \nHemos revisado el incidente reportado sobre la posible afectación del servicio. Se realizó una verificación completa de extremo a extremo sobre el enlace, incluyendo validaciones en la última milla, equipos de acceso y red core.
+                            \nDe acuerdo con nuestros sistemas de monitoreo y las pruebas realizadas por el equipo técnico, el servicio actualmente se encuentra OPERATIVO y ESTABLE.
+                            \nNo se evidencian caídas activas, pérdida de conectividad ni degradación dentro de nuestra infraestructura.
+                            \nA continuación, compartimos las verificaciones realizadas y las evidencias técnicas correspondientes.
+                            
+                            \n*VALIDACIONES DE ÚLTIMA MILLA (UM)*
+                            \n- Estado del equipo demarcador (CPE) - Uptime del equipo:
+                            \n${data.in_uptime || 'N/A'}
+                            \n- MAC Address aprendidas en ambos extremos (Cliente / Interconexión):
+                            \n${data.in_mac || 'N/A'}
+                            \n- Tráfico actual en puerto LAN:
+                            \n${data.in_trafficlan || 'N/A'}
+                            \n- Niveles de potencia óptica (Puerto Nodo – Cliente) RX / TX:
+                            \n${data.in_nodepower || 'N/A'}
+                            \n- Histórico de eventos del puerto (Flapping / Caídas):
+                            \n${data.in_nodeflap || 'N/A'}
+                            
+                            \n*VALIDACIONES RED MPLS CORE*
+                            \n- Estado de la etiqueta VC / Pseudowire - Tiempo desde el último cambio:
+                            \n${data.in_vcflap || 'N/A'}
+                            \n- Prueba de conectividad sobre VC - Ping entre routers peer sobre la etiqueta VC:
+                            \nParámetros de prueba:
+                            \n• Repeticiones: 1500
+                            \n• Tamaño de paquete: 1500 bytes
+                            \nResultado:
+                            \n${data.in_pingvc || 'N/A'}
 
-                        ${internetData}
-                        \nCon base en todas las verificaciones realizadas, no se identifican fallas dentro de nuestra red ni en el tramo de acceso hacia el cliente.
-                        \nEl enlace se encuentra estable, con conectividad activa y sin pérdida de paquetes en las pruebas ejecutadas.
-                        \nSugerimos amablemente validar la red interna del sitio (LAN, firewall o equipos intermedios), ya que desde nuestra infraestructura el servicio opera con normalidad.
-                        \nDe no presentarse nuevos eventos, procederemos con la resolución administrativa del ticket.
-                        \nNo obstante, quedamos completamente atentos si requieren que revisemos alguna prueba adicional junto a su equipo técnico.
-                        \nMuchas gracias por su colaboración.
-                        \nCordialmente,`;
+                            ${internetData}
+                            \nCon base en todas las verificaciones realizadas, no se identifican fallas dentro de nuestra red ni en el tramo de acceso hacia el cliente.
+                            \nEl enlace se encuentra estable, con conectividad activa y sin pérdida de paquetes en las pruebas ejecutadas.
+                            \nSugerimos amablemente validar la red interna del sitio (LAN, firewall o equipos intermedios), ya que desde nuestra infraestructura el servicio opera con normalidad.
+                            \nDe no presentarse nuevos eventos, procederemos con la resolución administrativa del ticket.
+                            \nNo obstante, quedamos completamente atentos si requieren que revisemos alguna prueba adicional junto a su equipo técnico.
+                            \nMuchas gracias por su colaboración.
+                            \nCordialmente,`;
 
-                    break;
+                        break;
 
-                    case 'fm_n2s_tab': 
+                    case 'fm_n2s_tab':
 
                         let title = data.check_n2SSA ? "*📋 TABLA DE ESCALAMIENTO N2 TX - DWDM*" : "*📋 TABLA DE ESCALAMIENTO N2 SOLICITUD/MOTIVO/CONSULTA*";
 
-                        let infoTecnica = data.check_n2SSA ? `\n\n*🔹-------- INFORMACIÓN TÉCNICA -------\n *Origen:* ${data.in_n2source}\n *Destino:* ${data.in_n2endcustomer}\n *Ancho de banda:* ${data.in_n2bw}` 
-                        : "";
+                        let infoTecnica = data.check_n2SSA ? `\n\n*🔹-------- INFORMACIÓN TÉCNICA -------\n *Origen:* ${data.in_n2source}\n *Destino:* ${data.in_n2endcustomer}\n *Ancho de banda:* ${data.in_n2bw}`
+                            : "";
 
                         let diagnostico = !data.check_n2SSA ? `\n\n*🔹---------- DIAGNÓSTICO -------------\n ${data.in_n1validation1}` : "";
 
                         layout = `Estimados, espero se encuentren bien. Solicito su colaboración por favor.
-                        \n${title}
-                        \n*🔹---------DATOS CLIENTE----------*
-                        \n*Número de ticket:* ${data.in_noticket1 || 'N/A'}
-                        \n*ID & Cliente Ufinet:* ${data.in_id1 || 'N/A'}
-                        \n*🔹--------DATOS IMPORTANTES--------*
-                        \n*Tipo de falla:* ${data.in_failtype1}${infoTecnica}
-                        \n*🔹-------- REPORTE DEL CLIENTE -------
-                        \n${data.in_reportecliente}${diagnostico}
-                        \n==================================
-                        \n*Ingeniero N1:* ${data.in_n1eng1}
-                        \n*Ingeniero N2:* Pendiente asignación`;
+                            \n${title}
+                            \n*🔹---------DATOS CLIENTE----------*
+                            \n*Número de ticket:* ${data.in_noticket1 || 'N/A'}
+                            \n*ID & Cliente Ufinet:* ${data.in_id1 || 'N/A'}
+                            \n*🔹--------DATOS IMPORTANTES--------*
+                            \n*Tipo de falla:* ${data.in_failtype1}${infoTecnica}
+                            \n*🔹-------- REPORTE DEL CLIENTE -------
+                            \n${data.in_reportecliente}${diagnostico}
+                            \n==================================
+                            \n*Ingeniero N1:* ${data.in_n1eng1}
+                            \n*Ingeniero N2:* Pendiente asignación`;
 
-                    break;
+                        break;
 
                     case 'fm_n2_ct':
 
                         let serviceType = data.check_n2CInternet ? "IP TRANSIT/INTERNET" : "CAPACIDAD/L2VPN";
 
-                        let caracterization = data.check_n2CInternet ? `\n\n*🔹--------CARACTERIZACIÓN--------*\n\n*Alcance del impacto:* ${data.in_impactScope || 'N/A'}\n*Tipo de afectación:* ${data.in_affectationType || 'N/A'}\n\n*¿Tiene BGP?:* ${data.in_hasBgp || 'N/A'}\n*Peer IPs:* ${data.in_peerIps || 'N/A'}\n*ASN cliente:* ${data.in_clientAsn || 'N/A'}\n*Estado sesión:* ${data.in_sessionStatus || 'N/A'}` : "";
+                        let caracterization = data.check_n2CInternet ? `\n*🔹--------CARACTERIZACIÓN--------*\n\n*Alcance del impacto:* ${data.in_impactScope || 'N/A'}\n*Tipo de afectación:* ${data.in_affectationType || 'N/A'}\n\n*¿Tiene BGP?:* ${data.in_hasBgp || 'N/A'}\n*Peer IPs:* ${data.in_peerIps || 'N/A'}\n*ASN cliente:* ${data.in_clientAsn || 'N/A'}\n*Estado sesión:* ${data.in_sessionStatus || 'N/A'}` : `\n*🔹--------PRUEBAS DESDE EL CLIENTE / EXTREMOS-------*\n\n*Ping extremo A → B (Si Aplica):* \n\n${data.in_pingAtoB || 'N/A'}    \n\n*Ping extremo B → A (Si Aplica):*\n\n${data.in_pingBtoA || 'N/A'}\n\n*Aplicación o tráfico afectado:* ${data.in_affectedApp || 'N/A'}\n\n*Evidencia de caída total reportada por cliente:*\n\n${data.in_outageEvidence || 'IMAGENES ADJUNTAS'}`;
 
-                        let edgeTest = data.check_n2CInternet ? `\n\n*Ping desde BVI/PE a IP aprendida por ARP(Cliente):*\n\n${data.in_pingBviToArp || 'N/A'}\n\n*Resultado comparativo ARP vs pseudowire:*  ${data.in_arpVsPwResult || 'N/A'}\n\n*Ping desde la BVI / PE a 8.8.8.8 u otro destino público:*\n\n${data.in_pingBviToPublic || 'N/A'}\n\n*Validación de alcance desde borde de red:* ${data.in_edgeReachabilit || 'N/A'}\n\n*Traceroute desde la BVI / PE hacia destino público:*\n\n${data.in_traceBviToPublic || 'N/A'}\n\n*🔹----------EVIDENCIA CLIENTE -------------*\n\n${data.in_clientEvidenceDetails || 'IMAGENENES ADJUNTAS'}` : "";
+                        let edgeTest = data.check_n2CInternet ? `\n\n*Ping desde BVI/PE a IP aprendida por ARP(Cliente):*\n\n${data.in_pingBviToArp || 'N/A'}\n\n*Resultado comparativo ARP vs pseudowire:*  ${data.in_arpVsPwResult || 'N/A'}\n\n*Ping desde la BVI / PE a 8.8.8.8 u otro destino público:*\n\n${data.in_pingBviToPublic || 'N/A'}\n\n*Validación de alcance desde borde de red:* ${data.in_edgeReachability || 'N/A'}\n\n*Traceroute desde la BVI / PE hacia destino público:*\n\n${data.in_traceBviToPublic || 'N/A'}\n\n*🔹----------EVIDENCIA CLIENTE -------------*\n\n${data.in_clientEvidenceDetails || 'IMAGENENES ADJUNTAS'}` : `\n\n*Puertos Extremo A (Estado y VLAN):*\n\n${data.in_portsEndA || 'N/A'}\n\n*¿Se observa tráfico (Pkts In/Out)?:* ${data.in_trafficpkts || 'N/A'}\n\n*Puertos Extremo B (Estado y VLAN):*\n\n${data.in_portsEndB || 'N/A'}\n\n¿Se observa aprendizaje MAC?: ${data.in_macLearning || 'N/A'}`;
 
                         layout = `*📋 Escalamiento N1 → N2 | Caída Total Servicio ${serviceType} | [VC ID]*
-                        \n\n*🔹---------MOTIVO ESCALACIÓN / OBSERVACIONES / PUNTOS DE INTERÉS ----------*
-                        \n${data.in_conclusionNotes || 'N/A'}               
-                        \n*🔹---------VALIDACIONES ACCESO / ÚLTIMA MILLA----------*             
-                        \n*Estado puerto cliente / UNI (A y B si aplica):*${data.in_clientPortStatus || 'N/A'}
-                        \n*¿Se descartó falla local básica en acceso? (Puerto Down / VLAN):* ${data.in_localFailureDiscard || 'N/A'}                      
-                        \n*Utilización (Speed):*
-                        \n ${data.in_utilizationSpeed || 'N/A'}
-                        \n*¿Hay CRC, drops, flaps?:* ${data.in_portErrors || 'N/A'}
-                        \n*🔹---------INFORMACIÓN DE IMPACTO----------*                      
-                        \n*Hora exacta de la prueba:* ${data.in_testExactTime || 'N/A'}                          
-                        \n*¿La caída continúa al momento del escalamiento?:* ${data.in_outageStatus || 'N/A'}${caracterization}   
-                        \n*🔹--------PRUEBAS DESDE EL CLIENTE / EXTREMOS-------*                   
-                        \n*Ping extremo A → B (Si Aplica):* 
-                        \n${data.in_pingAtoB || 'N/A'}                  
-                        \n*Ping extremo B → A (Si Aplica):*
-                        \n${data.in_pingBtoA || 'N/A'}                      
-                        \n*Aplicación o tráfico afectado:* ${data.in_affectedApp || 'N/A'}                      
-                        \n*Evidencia de caída total reportada por cliente:*
-                        \n${data.in_outageEvidence || 'IMAGENES ADJUNTAS'}     
-                        \n*🔹----------PRUEBAS DESDE LA RED / EDGE / PE -------------*          
-                        \n*Estado del pseudowire:* ${data.in_pwStatus || 'N/A'}
-                        \n*¿El pseudowire responde?:* ${data.in_pwResponse || 'N/A'}
-                        \n*Ping de prueba sobre pseudowire:*
-                        \n${data.in_pingOverPw || 'N/A'}
-                        \n*Error en VC/PW:* ${data.in_pwErrorDetail || 'N/A'}
-                        \n============================================================
-                        \n*Puertos Extremo A (Estado y VLAN):*
-                        \n ${data.in_portsEndA || 'N/A'}
-                        \n*¿Se observa tráfico (Pkts In/Out)?:* ${data.in_trafficpkts || 'N/A'}
-                        \n*Puertos Extremo B (Estado y VLAN):*
-                        \n ${data.in_portsEndB || 'N/A'}
-                        \n¿Se observa aprendizaje MAC?: ${data.in_macLearning || 'N/A'}
-                        \n============================================================${edgeTest}`;
-                    
-                    break;
+                            \n\n*🔹---------MOTIVO ESCALACIÓN / OBSERVACIONES / PUNTOS DE INTERÉS ----------*
+                            \n${data.in_conclusionNotes || 'N/A'}               
+                            \n*🔹---------VALIDACIONES ACCESO / ÚLTIMA MILLA----------*             
+                            \n*Estado puerto cliente / UNI (A y B si aplica):*
+                            \n${data.in_clientPortStatus || 'N/A'}
+                            \n*¿Se descartó falla local básica en acceso? (Puerto Down / VLAN):* ${data.in_localFailureDiscard || 'N/A'}                      
+                            \n*Utilización (Speed):*
+                            \n ${data.in_utilizationSpeed || 'N/A'}
+                            \n*¿Hay CRC, drops, flaps?:* ${data.in_portErrors || 'N/A'}
+                            \n*🔹---------INFORMACIÓN DE IMPACTO----------*                      
+                            \n*Hora exacta de la prueba:* ${data.in_testExactTime || 'N/A'}                          
+                            \n*¿La caída continúa al momento del escalamiento?:* ${data.in_outageStatus || 'N/A'}
+                            ${caracterization}       
+                            \n*🔹----------PRUEBAS DESDE LA RED / EDGE / PE -------------*          
+                            \n*Estado del pseudowire:* ${data.in_pwStatus || 'N/A'}
+                            \n*¿El pseudowire responde?:* ${data.in_pwResponse || 'N/A'}
+                            \n*Ping de prueba sobre pseudowire:*
+                            \n${data.in_pingOverPw || 'N/A'}
+                            \n*Error en VC/PW:* ${data.in_pwErrorDetail || 'N/A'}
+                            \n============================================================${edgeTest}`;
+
+                        break;
 
                     default:
                         layout = `plantilla no definida para el formulario: ${formId}`;
@@ -1301,7 +1309,7 @@
                 btn.addEventListener('click', (event) => {
                     //buscar form del botón
                     const currentForm = event.target.closest('form');
-                    
+
                     //terminar el proceso si el botón no está en un form
                     if (!currentForm) return;
 
@@ -1330,7 +1338,7 @@
             });
 
             //BOTON LIMPIAR FORMS
-            const btnClean = document.querySelectorAll('.btn-clean'); 
+            const btnClean = document.querySelectorAll('.btn-clean');
             btnClean.forEach(btn => {
 
                 btn.addEventListener('click', (event) => {
@@ -1352,9 +1360,6 @@
         });
 
     </script>
-
-  </body>
+</body>
 
 </html>
-
-

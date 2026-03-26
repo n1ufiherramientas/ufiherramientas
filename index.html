@@ -609,15 +609,474 @@
 
                     </div>
 
-                    <button type="button" class="btn btn-primary btn_copy_layout">Copiar Plantilla</button>
-                    <button type="button" class="btn btn-danger btn-clean">Limpiar Todo</button>
+                    <div class="d-flex justify-content-end">
+                        <button type="button" class="btn btn-primary btn_copy_layout me-2">Copiar Plantilla</button>
+                        <button type="button" class="btn btn-danger btn-clean">Limpiar Todo</button>
+                    </div>
+
 
                 </form>
 
             </section>
-            <!-- ─── N2 Degradación (FALTA) ──────────────────────────────────────── -->
-            <div class="tab-pane container fade" id="n2ci_tab">
-                N2DC
+            <!-- ─── N2 Degradación ──────────────────────────────────────── -->
+            <div class="tab-pane container fade" id="n2ci_tab" style="width: 1000px;">
+
+                <form id="fm_n2_deg" class="bg-white p-5 rounded-4 shadow">
+
+                    <h3 class="text-center mb-4 text-primary fw-bold">Escalamiento N1 → N2 | Degradación de Servicio
+                    </h3>
+
+                    <!-- ─── CHECK ───────────── -->
+                    <div class="form-check form-switch mb-3">
+                        <input id="check_n2DInternet" class="form-check-input" type="checkbox" value="no" role="button">
+                        <label class="form-check-label" for="check_n2DInternet">CAPACIDAD</label>
+                    </div>
+
+                    <!-- ─── INFORMACIÓN DE IMPACTO (COMÚN) ───────────── -->
+                    <div class="bg-light p-3 rounded-3 border mb-4">
+
+                        <h5 class="border-start border-4 border-primary mb-3"><span class="ms-2">DATOS GENERALES</span></h5>
+
+                        <div class="row">
+
+                            <div class="col">
+
+                                <div class="form-floating mb-3">
+                                    <input type="text" class="form-control" id="in_startFailTimed" placeholder="">
+                                    <label>Fecha y hora de inicio del problema:</label>
+                                </div>
+
+                                <div class="form-floating mb-3">
+                                    <select role="button" class="form-select" id="in_impactScoped">
+                                        <option value="Un extremo/Usuario">Un extremo/Usuario</option>
+                                        <option value="Una sede">Una sede</option>
+                                        <option value="Varios usuarios/clientess">Varios usuarios/clientess</option>
+                                        <option value="Masiv">Masivo</option>
+                                    </select>
+                                    <label class="form-label">Alcance del impacto:</label>
+                                </div>
+
+                                <div class="form-floating mb-3">
+                                    <input type="text" class="form-control" id="in_offnetProviderd" placeholder="">
+                                    <label>¿Enlace tiene parte OFFNET (Indique el proveedor)?</label>
+                                </div>
+
+                            </div>
+
+                            <div class="col">
+
+                                <div class="form-floating mb-3">
+                                    <select role="button" class="form-select" id="in_issueOngoingd">
+                                        <option value="Si">Si</option>
+                                        <option value="No">No</option>
+                                    </select>
+                                    <label class="form-label">¿El problema continúa al momento del escalamiento?</label>
+                                </div>
+
+                                <div class="form-floating mb-3">
+                                    <select role="button" class="form-select" id="in_issueBehaviord">
+                                        <option value="Constante">Constante</option>
+                                        <option value="Aleatorio">Aleatorio</option>
+                                        <option value="Por franjas horarias">Por franjas horarias</option>
+                                    </select>
+                                    <label class="form-label">Comportamiento del problema:</label>
+                                </div>
+
+                                <div class="form-floating">
+                                    <select role="button" class="form-select" id="in_cpeManagedByUfinetd">
+                                        <option value="Si">Si</option>
+                                        <option value="No">No</option>
+                                    </select>
+                                    <label class="form-label">¿CPE administrado por Ufinet?</label>
+                                </div>
+                                
+                            </div>
+
+                        </div>
+
+                        <div class="form-floating">
+                            <textarea class="form-control" id="in_issueDescriptiond" placeholder=""></textarea>
+                            <label>Descripción del problema / Motivo del escalamiento:</label>
+                        </div>
+
+
+                    </div>
+
+                    <!-- ─── ÚLTIMA MILLA Y ACCESO (COMÚN/INTERNET) ───────────── -->
+                    <div class="bg-light p-3 rounded-3 border mb-4">
+
+                        <h5 class="border-start border-4 border-primary mb-3"><span class="ms-2">ÚLTIMA MILLA Y ACCESO (COMÚN)</span></h5>
+
+                        <div class="form-floating mb-3">
+                            <textarea class="form-control" id="in_clientPortStatusd" placeholder=""></textarea>
+                            <label>Estado puerto cliente / UNI (A y B si aplica):</label>
+                        </div>
+
+                        <!-- ─── PRUEBAS PC (INTERNET) ───────────── -->
+                        <div class="form-floating">
+                            <select role="button" class="form-select" id="in_localFailureDiscardedd">
+                                <option value="Si">Si</option>
+                                <option value="No">No</option>
+                            </select>
+                            <label class="form-label">¿Se descartó falla local básica en acceso? (Puerto Down / VLAN)</label>
+                        </div>
+
+                        <div class="content_n2intd d-none">
+
+                            <h5 class="border-start border-4 border-primary mt-3"><span class="ms-2">PRUEBAS UM PC</span></h5>
+
+                            <div class="row mt-3">
+                                <div class="col">
+                                    <div class="form-floating">
+                                        <select role="button" class="form-select" id="in_laptopDirectConnectiond">
+                                            <option value="Si">Si</option>
+                                            <option value="No">No</option>
+                                        </select>
+                                        <label class="form-label">¿Es posible conectar laptop directo al CPE?</label>
+                                    </div>
+                                </div>
+                                <div class="col">
+                                    <div class="form-floating">
+                                        <textarea class="form-control" id="in_pcTestResultd" placeholder=""></textarea>
+                                        <label>Resultado prueba PC:</label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <!-- ─── CAMPOS ESPECÍFICOS SEGÚN SERVICIO (CAPACIDAD) ───────────── -->
+                    <div class="content_n2capd bg-light p-3 rounded-3 border mb-4">
+
+                        <h5 class="border-start border-4 border-primary mb-3"><span class="ms-2">CAMPOS ESPECÍFICOS SEGÚN SERVICIO (CAPACIDAD)</span></h5>
+
+                        <div class="row">
+
+                            <div class="col">
+
+                                <div class="form-floating">
+                                    <select role="button" class="form-select" id="in_problemTyped">
+                                        <option value="Sin aprendizaje MAC">Sin aprendizaje MAC</option>
+                                        <option value="Falla por VLAN específica">Falla por VLAN específica</option>
+                                        <option value="Tráfico unidireccional">Tráfico unidireccional</option>
+                                        <option value="Otro">Otro</option>
+                                    </select>
+                                    <label class="form-label">Tipo de problema:</label>
+                                </div>
+
+                            </div>
+
+                            <div class="col">
+
+                                 <div class="form-floating">
+                                    <input type="text" class="form-control" id="in_specificVland" placeholder="">
+                                    <label>VLAN Específica:</label>
+                                </div>
+                                
+                            </div>
+
+                            <div class="col">
+
+                                <div class="form-floating">
+                                    <select role="button" class="form-select" id="in_unidirectionalTrafficd">
+                                        <option value="Si">Si</option>
+                                        <option value="No">No</option>
+                                    </select>
+                                    <label class="form-label">¿Se afecta solo un sentido del tráfico?</label>
+                                </div>
+                                
+                            </div>
+
+                        </div>
+
+                        <div class="form-floating my-3">
+                            <select role="button" class="form-select" id="in_testedBothEndsd">
+                                <option value="Si">Si</option>
+                                <option value="No">No</option>
+                            </select>
+                            <label class="form-label">¿Se probó desde ambos extremos?</label>
+                        </div>
+                        
+                        <h5 class="border-start border-4 border-primary mb-3"><span class="ms-2">Datos Técnicos L2:</span></h5>
+                        
+                        <div class="row">
+
+                            <div class="col">
+
+                                <div class="form-floating mb-3">
+                                    <textarea class="form-control ufi-textarea" id="in_peIpPortEndAd" placeholder="" rows="2"></textarea>
+                                    <label>IP PE / Puerto y Subinterfaz Extremo A:</label>
+                                </div>
+
+                                <div class="form-floating">
+                                    <input type="text" class="form-control" id="in_pseudowireIdd" placeholder="">
+                                    <label>Pseudowire ID:</label>
+                                </div>
+                        
+                            </div>
+
+                            <div class="col">
+
+                                <div class="form-floating mb-3">
+                                    <textarea class="form-control ufi-textarea" id="in_peIpPortEndBd" placeholder="" rows="2"></textarea>
+                                    <label>IP PE / Puerto y Subinterfaz Extremo B:</label>
+                                </div>
+
+                                <div class="form-floating">
+                                    <select role="button" class="form-select" id="in_pwStatusd">
+                                        <option value="Up">Up</option>
+                                        <option value="Down">Down</option>
+                                    </select>
+                                    <label class="form-label">Estado PW:</label>
+                                </div>
+                                
+                            </div>
+
+                        </div>
+
+                        <div class="form-floating my-3">
+                            <select role="button" class="form-select" id="in_isRingNetworkd">
+                                <option value="Si">Si</option>
+                                <option value="No">No</option>
+                            </select>
+                            <label class="form-label">¿Es anillo (EPRS/G.8032)?</label>
+                        </div>
+
+                        <div class="form-floating">
+                            <select role="button" class="form-select" id="in_isMulticastd">
+                                <option value="Si">Si</option>
+                                <option value="No">No</option>
+                            </select>
+                            <label class="form-label">¿Es multicast?</label>
+                        </div>
+
+                    </div>
+
+                    <!-- ─── CAMPOS ESPECÍFICOS SEGÚN SERVICIO (INTERNET) ───────────── -->
+                    <div class="content_n2intd bg-light p-3 rounded-3 border mb-4 d-none">
+
+                        <h5 class="border-start border-4 border-primary mb-3"><span class="ms-2">CAMPOS ESPECÍFICOS SEGÚN SERVICIO (INTERNET)</span></h5>
+
+                        <div class="row">
+
+                            <div class="col">
+
+                                <div class="form-floating">
+                                    <input class="form-control" id="in_routedPrefixStaticRouted" placeholder="">
+                                    <label>¿Tiene prefijo enrutado/Ruta estática?</label>
+                                </div>
+                                
+                            </div>
+
+                            <div class="col">
+
+                                <div class="form-floating mb-3">
+                                    <textarea class="form-control" id="in_affectedDestinationsd" placeholder=""></textarea>
+                                    <label>Servicios o destinos afectados:</label>
+                                </div>
+                                
+                            </div>
+
+                            <div class="col">
+
+                                <div class="form-floating">
+                                    <select role="button" class="form-select" id="in_affectsOtherDestinationsd">
+                                        <option value="Si">Si</option>
+                                        <option value="No">No</option>
+                                    </select>
+                                    <label class="form-label">¿Afecta otros destinos además del reportado?</label>
+                                </div>
+
+                            </div>
+
+                        </div>
+                        
+                        <h5 class="border-start border-4 border-primary mb-3"><span class="ms-2">Datos Técnicos L3:</span></h5>
+                        
+                        <div class="row">
+
+                            <div class="col">
+
+                                <div class="form-floating mb-3">
+                                    <textarea class="form-control" id="in_clientBvid" placeholder=""></textarea>
+                                    <label>BVI del cliente (POOL/Estado):</label>
+                                </div>
+                        
+                            </div>
+
+                            <div class="col">
+
+                                <div class="form-floating mb-3">
+                                    <textarea class="form-control" id="in_sourceDestIpsd" placeholder=""></textarea>
+                                    <label>IP Origen/ IP Destino:</label>
+                                </div>
+                                
+                            </div>
+
+                            <div class="col">
+
+                                <div class="form-floating mb-3">
+                                    <textarea class="form-control" id="in_clientDnsd" placeholder=""></textarea>
+                                    <label>DNS del cliente:</label>
+                                </div>
+                                
+                            </div>
+
+                        </div>
+
+                        <div class="form-floating mb-3">
+                            <select role="button" class="form-select" id="in_hasBgpd">
+                                <option value="No">No</option>
+                                <option value="Si">Si</option>
+                            </select>
+                            <label class="form-label">¿Tiene BGP?</label>
+                        </div>
+
+                        <div class="row">
+
+                            <div class="col">
+                                <div class="form-floating">
+                                    <input type="text" class="form-control" id="in_peerIpsd" placeholder="">
+                                    <label>Peer IPs:</label>
+                                </div>
+                            </div>
+
+                            <div class="col">
+                                <div class="form-floating">
+                                    <input type="text" class="form-control" id="in_clientAsnd" placeholder="">
+                                    <label>ASN cliente:</label>
+                                </div>
+                            </div>
+
+                            <div class="col">
+                                <div class="form-floating">
+                                    <select role="button" class="form-select" id="in_sessionStatusd">
+                                        <option value="Up">Up</option>
+                                        <option value="Downo">Down</option>
+                                        <option value="Intermitente">Intermitente</option>
+                                    </select>
+                                    <label class="form-label">Estado sesión:</label>
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    <!-- ─── PRUEBAS REALIZADAS (COMÚN) ───────────── -->
+                    <div class="bg-light p-3 rounded-3 border mb-4">
+
+                        <h5 class="border-start border-4 border-primary mb-3"><span class="ms-2">PRUEBAS REALIZADAS (DINÁMICAS) (COMÚN)</span></h5>
+
+                        <div class="row">
+
+                            <div class="col">
+
+                                <div class="form-floating mb-3">
+                                    <textarea class="form-control" id="in_pingLatencyLossd" placeholder=""></textarea>
+                                    <label>Ping / Latencia / Pérdida:</label>
+                                </div>
+
+                                <div class="form-floating">
+                                    <textarea class="form-control" id="in_opticalPowersd" placeholder=""></textarea>
+                                    <label>Potencias ópticas de los puertos:</label>
+                                </div>
+
+                            </div>
+
+                            <div class="col">
+
+                                <div class="form-floating mb-3">
+                                    <textarea class="form-control" id="in_utilizationSpeedd" placeholder=""></textarea>
+                                    <label>Utilización (Speed):</label>
+                                </div>
+
+                                <div class="form-floating">
+                                    <select role="button" class="form-select" id="in_portErrorsd">
+                                        <option value="No">No</option>
+                                        <option value="Si">Si</option>
+                                    </select>
+                                    <label class="form-label">¿Hay CRC, drops, flaps?</label>
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    <!-- ─── PRUEBAS REALIZADAS (CAPCIDAD) ───────────── -->
+                    <div class="content_n2capd bg-light p-3 rounded-3 border mb-4">
+
+                        <div class="row">
+
+                            <div class="col">
+                                <div class="form-floating">
+                                    <textarea class="form-control ufi-textarea" id="in_pingAToBd" placeholder="" rows="3"></textarea>
+                                    <label>Ping Extremo A → B:</label>
+                                </div>
+                            </div>
+
+                            <div class="col">
+                                <div class="form-floating">
+                                    <textarea class="form-control ufi-textarea" id="in_pingBToAd" placeholder="" rows="3"></textarea>
+                                    <label>Ping Extremo B → A:</label>
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    <!-- ─── EVIDENCIA CLIENTE Y PRUEBAS (INTERNET) ───────────── -->
+                    <div class="content_n2intd bg-light p-3 rounded-3 border mb-4 d-none">
+
+                        <h5 class="border-start border-4 border-primary mb-3"><span class="ms-2">EVIDENCIA CLIENTE</span></h5>
+
+                        <p class="text-danger">Si la evidencia son imagenes dejar campo vacio</p>
+
+                        <ul>
+                            <li>Traceroute</li>
+                            <li>MTR desde cliente:</li>
+                            <li>Pruebas DNS: nslookup (dominio específico y contra 8.8.8.8).</li>
+                            <li>Speed Test: (Resultado y método).</li>
+                        </ul>
+
+                        <textarea class="form-control mb-3" rows="3" id="in_clientEvidenceDetailsd" placeholder="Detalles..."></textarea>
+
+                        <div class="row">
+
+                            <div class="col">
+                                <div class="form-floating mb-3">
+                                    <textarea class="form-control" id="in_pingBviToClientIpd" placeholder=""></textarea>
+                                    <label>Ping desde BVI/PE a IP aprendida por ARP(Cliente):</label>
+                                </div>
+                            </div>
+
+                            <div class="col">
+                                <div class="form-floating mb-3">
+                                    <textarea class="form-control" id="in_pingBviToDestPublicDnsd" placeholder=""></textarea>
+                                    <label>Ping desde BVI hacia destino afectado y DNS públicos:</label>
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <div class="form-floating">
+                            <textarea class="form-control" id="in_tracerouteBviToPublicd" placeholder=""></textarea>
+                            <label>Traceroute desde la BVI / PE hacia destino público:</label>
+                        </div>
+
+                    </div>
+
+                    <div class="d-flex justify-content-end">
+                        <button type="button" class="btn btn-primary btn_copy_layout me-2">Copiar Plantilla</button>
+                        <button type="button" class="btn btn-danger btn-clean">Limpiar Todo</button>
+                    </div>
+
+                </form>
+
             </div>
             <!-- ─── N2 solicitudes (IP/TX) ──────────────────────────────────────── -->
             <div class="tab-pane container fade" id="n2s_tab" style="width: 1000px;">
@@ -748,8 +1207,10 @@
 
                     </div>
 
-                    <button type="button" class="btn btn-primary btn_copy_layout">Copiar Plantilla</button>
-                    <button type="button" class="btn btn-danger btn-clean">Limpiar Todo</button>
+                    <div class="d-flex justify-content-end">
+                        <button type="button" class="btn btn-primary btn_copy_layout me-2">Copiar Plantilla</button>
+                        <button type="button" class="btn btn-danger btn-clean">Limpiar Todo</button>
+                    </div>
 
                 </form>
 
@@ -1064,6 +1525,7 @@
                 checkMasiva: document.getElementById("check_content_masiva"),
                 checkN2ssa: document.getElementById("check_n2SSA"),
                 checkN2CInternet: document.getElementById("check_n2CInternet"),
+                checkN2DInternet: document.getElementById("check_n2DInternet"),
                 // Contenedores individuales
                 contentInternet: document.getElementById("content_internet"),
                 contentVisita: document.getElementById("content_visita"),
@@ -1072,7 +1534,9 @@
                 divsN2valn1: document.getElementById("content_n2valn1"),
                 // NodeLists (Múltiples elementos)
                 divsInternet: document.querySelectorAll('.content_n2int'),
-                divsCapacidad: document.querySelectorAll('.content_n2cap')
+                divsCapacidad: document.querySelectorAll('.content_n2cap'),
+                divsDInternet: document.querySelectorAll('.content_n2intd'),
+                divsDCapacidad: document.querySelectorAll('.content_n2capd')
             };
 
             /*  OCULTAR | MOSTAR DIVS */
@@ -1114,6 +1578,8 @@
 
             setupCheckbox(ui.checkN2CInternet, ui.divsInternet, ui.divsCapacidad, "INTERNET", "CAPACIDAD");
             setupCheckbox(ui.checkN2ssa, ui.divsN2tecdata, ui.divsN2valn1, "DWDM/TX", "IP");
+
+            setupCheckbox(ui.checkN2DInternet, ui.divsDInternet, ui.divsDCapacidad, "INTERNET", "CAPACIDAD");
 
             //FUNCIÓN GENEREAL OBTENER DATOS FORMULARIOS
             function getFormValues(formElement) {
@@ -1269,7 +1735,7 @@
 
                         let edgeTest = data.check_n2CInternet ? `\n\n*Ping desde BVI/PE a IP aprendida por ARP(Cliente):*\n\n${data.in_pingBviToArp || 'N/A'}\n\n*Resultado comparativo ARP vs pseudowire:*  ${data.in_arpVsPwResult || 'N/A'}\n\n*Ping desde la BVI / PE a 8.8.8.8 u otro destino público:*\n\n${data.in_pingBviToPublic || 'N/A'}\n\n*Validación de alcance desde borde de red:* ${data.in_edgeReachability || 'N/A'}\n\n*Traceroute desde la BVI / PE hacia destino público:*\n\n${data.in_traceBviToPublic || 'N/A'}\n\n*🔹----------EVIDENCIA CLIENTE -------------*\n\n${data.in_clientEvidenceDetails || 'IMAGENENES ADJUNTAS'}` : `\n\n*Puertos Extremo A (Estado y VLAN):*\n\n${data.in_portsEndA || 'N/A'}\n\n*¿Se observa tráfico (Pkts In/Out)?:* ${data.in_trafficpkts || 'N/A'}\n\n*Puertos Extremo B (Estado y VLAN):*\n\n${data.in_portsEndB || 'N/A'}\n\n¿Se observa aprendizaje MAC?: ${data.in_macLearning || 'N/A'}`;
 
-                        layout = `*📋 Escalamiento N1 → N2 | Caída Total Servicio ${serviceType} | [VC ID]*
+                        layout = `*📋 Escalamiento N1 → N2 | Caída Total Servicio ${serviceType}*
                             \n\n*🔹---------MOTIVO ESCALACIÓN / OBSERVACIONES / PUNTOS DE INTERÉS ----------*
                             \n${data.in_conclusionNotes || 'N/A'}               
                             \n*🔹---------VALIDACIONES ACCESO / ÚLTIMA MILLA----------*             
@@ -1291,6 +1757,46 @@
                             \n*Error en VC/PW:* ${data.in_pwErrorDetail || 'N/A'}
                             \n============================================================${edgeTest}`;
 
+                        break;
+
+                    case 'fm_n2_deg':
+
+                        let typeService = data.check_n2DInternet ? "IP TRANSIT/INTERNET" : "CAPACIDAD/L2VPN";
+
+                        layout = `*📋 Escalamiento N1 → N2 | Degradación Servicio ${typeService}*
+                        \n\n*🔹---------MOTIVO ESCALACIÓN / OBSERVACIONES / PUNTOS DE INTERÉS ----------*
+                        \n${data.in_issueDescriptiond || 'N/A'}
+                        \n*🔹---------DATOS GENERALES----------* 
+                        \n*Fecha y hora de inicio del problema:* ${data.in_startFailTimed || 'N/A'}
+                        \n*¿El problema continúa al momento del escalamiento?:* ${data.in_issueOngoingd || 'N/A'}
+                        \n*Alcance del impacto:* ${data.in_impactScoped || 'N/A'}
+                        \n*Comportamiento del problema* ${data.in_issueBehaviord || 'N/A'}
+                        \n*¿Offnet?:* ${data.in_offnetProviderd || 'N/A'}
+                        \n*¿CPE administrado por Ufinet?:* ${data.in_cpeManagedByUfinetd || 'N/A'}
+                        \n*🔹---------VALIDACIONES ACCESO / ÚLTIMA MILLA----------*             
+                        \n*Estado puerto cliente / UNI (A y B si aplica):* 
+                        \n${data.in_clientPortStatusd || 'N/A'}
+                        \n*¿Se descartó falla local básica en acceso? (Puerto Down / VLAN):* ${data.in_localFailureDiscardedd || 'N/A'}                      
+                        \n*🔹---------CAPACIDAD----------*                      
+                        \n*Tipo de problema:* ${data.in_problemTyped || 'N/A'}                          
+                        \n*VLAN especifica:* ${data.in_specificVland || 'N/A'}
+                        \n*¿Se afecta solo un sentido del tráfico?:* ${data.in_unidirectionalTrafficd || 'N/A'}
+                        \n*¿Se probó desde ambos extremos?:* ${data.in_testedBothEndsd || 'N/A'}
+                        \n\n*DATOS TECNICOS L2*
+                        \n\n*IP PE / Puerto y Subinterfaz Extremo A:*
+                        \n${data.in_peIpPortEndAd || 'N/A'}
+                        \n*IP PE / Puerto y Subinterfaz Extremo B:*
+                        \n${data.in_peIpPortEndBd || 'N/A'}
+                        \n*PW ID:* ${data.in_pseudowireIdd || 'N/A'}
+                        \n*Estado PW:* ${data.in_pwStatusd || 'N/A'}
+                        \n*¿Es anillo?:* ${data.in_isRingNetworkd || 'N/A'}
+                        \n*¿Es multicast?:* ${data.in_isMulticastd || 'N/A'}      
+                        \n*🔹----------PRUEBAS REALIZADAS CORE-------------*          
+                        \n*Utilización Speed:*
+                        \n${data.in_utilizationSpeedd || 'N/A'}
+                        \n*Potencias opticas de los puertos en los extremos:*
+                        \n${data.in_opticalPowersd || 'N/A'}
+                        \n*¿Hay CRC, dorps, flaps?:* ${data.in_portErrorsd || 'N/A'}`;
                         break;
 
                     default:

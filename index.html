@@ -504,6 +504,7 @@
                                     <select role="button" class="form-select" id="in_macLearning">
                                         <option value="Si">Si</option>
                                         <option value="No">No</option>
+                                        <option value="Un extremo">Un extremo</option>
                                         <option value="N/A">No Aplica</option>
                                     </select>
                                     <label class="form-label">¿Se observa aprendizaje MAC?</label>
@@ -837,16 +838,16 @@
 
                         <div class="form-floating my-3">
                             <select role="button" class="form-select" id="in_isRingNetworkd">
-                                <option value="Si">Si</option>
                                 <option value="No">No</option>
+                                <option value="Si">Si</option>
                             </select>
                             <label class="form-label">¿Es anillo (EPRS/G.8032)?</label>
                         </div>
 
                         <div class="form-floating">
                             <select role="button" class="form-select" id="in_isMulticastd">
-                                <option value="Si">Si</option>
                                 <option value="No">No</option>
+                                <option value="Si">Si</option>
                             </select>
                             <label class="form-label">¿Es multicast?</label>
                         </div>
@@ -1044,6 +1045,8 @@
                         </ul>
 
                         <textarea class="form-control mb-3" rows="3" id="in_clientEvidenceDetailsd" placeholder="Detalles..."></textarea>
+
+                        <h5 class="border-start border-4 border-primary mb-3"><span class="ms-2">PRUEBAS DESDE EDGE</span></h5>
 
                         <div class="row">
 
@@ -1405,8 +1408,10 @@
 
                     </div>
 
-                    <button type="button" class="btn btn-primary btn_copy_layout">Copiar Plantilla</button>
-                    <button type="button" class="btn btn-danger btn-clean">Limpiar Todo</button>
+                    <div class="d-flex justify-content-end">
+                        <button type="button" class="btn btn-primary btn_copy_layout me-2">Copiar Plantilla</button>
+                        <button type="button" class="btn btn-danger btn-clean">Limpiar Todo</button>
+                    </div>
 
                 </form>
 
@@ -1419,7 +1424,9 @@
             // LISTADO N1
             const nombres = [
                 "A. Felipe Osorio Herrera",
+                "Andres Felipe Pino Muñoz",
                 "Angel S. Angulo Gamboa",
+                "Araceli J. Ortiz Rodriguez",
                 "A. Alejandro Valenciano Grijalba",
                 "Alexis E. Lagos Castillo",
                 "Bryan Martinez Diaz",
@@ -1433,17 +1440,21 @@
                 "Hallime Tamura Arara",
                 "Hammer A. Gamboa Izquierdo",
                 "Hanks A. Molina Pineda",
+                "Jhon Ramiro Higaldo Garcia",
                 "Juan Pablo Arango Ramirez",
                 "Juan S. Naranjo Lopez",
                 "Juan Diego Carvajal Gonzalez",
                 "Juan S. Oquendo Pantoja",
                 "Julian A. Valencia Henao",
                 "Julio J. Ramirez Calel",
+                "L. Felipe Morales Rios",
                 "Leobaldo J. Zerpa Romero",
                 "Lester J. Cruz Lopez",
                 "M. Andres Cadena Andrade",
                 "Mauro Rodriguez Diaz",
+                "Mateo Gomez Lopez",
                 "Manuel A. Ramirez Agudelo",
+                "Nolver A. Saucedo Cordoba",
                 "Richard A. Mesias Giraldo",
                 "Steven Marmolejo Guegia",
                 "Sergio D. Hurtado Muñoz",
@@ -1763,6 +1774,52 @@
 
                         let typeService = data.check_n2DInternet ? "IP TRANSIT/INTERNET" : "CAPACIDAD/L2VPN";
 
+                        let internetTest = data.check_n2DInternet ? `\n\n*PRUEBAS UM PC* 
+                        \n*¿Es posible conectar laptop directo al CPE?:* ${data.in_laptopDirectConnectiond || 'N/A'}
+                        \n*Resultado prueba PC:*
+                        \n${data.in_pcTestResultd || 'N/A'}
+                        \n*🔹---------INTERNET----------* 
+                        \n*¿Tiene prefijo enrutado/Ruta estática?:*
+                        \n${data.in_routedPrefixStaticRouted || 'N/A'}
+                        \n*Servicios o destinos afectados:*
+                        \n${data.in_affectedDestinationsd || 'N/A'}
+                        \n*¿Afecta otros destinos además del reportado?:* ${data.in_affectsOtherDestinationsd || 'N/A'}
+                        \n*DATOS TÉCNICOS L3*
+                        \n*BVI del cliente (POOL/Estado):*
+                        \n${data.in_clientBvid || 'N/A'}
+                        \n*IP Origen/ IP Destino:*
+                        \n${data.in_sourceDestIpsd || 'N/A'}
+                        \n*DNS del cliente:*
+                        \n${data.in_clientDnsd || 'N/A'}
+                        \n*¿Tiene BGP?:* ${data.in_hasBgpd || 'N/A'}
+                        \n*Peer IPs:* ${data.in_peerIpsd || 'N/A'}
+                        \n*ASN cliente:* ${data.in_clientAsnd || 'N/A'}
+                        \n*Estado sesión:* ${data.in_sessionStatusd || 'N/A'}` : `
+                        \n\n*🔹---------CAPACIDAD----------*                      
+                        \n*Tipo de problema:* ${data.in_problemTyped || 'N/A'}                          
+                        \n*VLAN especifica:* ${data.in_specificVland || 'N/A'}
+                        \n*¿Se afecta solo un sentido del tráfico?:* ${data.in_unidirectionalTrafficd || 'N/A'}
+                        \n*¿Se probó desde ambos extremos?:* ${data.in_testedBothEndsd || 'N/A'}
+                        \n\n*DATOS TECNICOS L2*
+                        \n\n*IP PE / Puerto y Subinterfaz Extremo A:*
+                        \n${data.in_peIpPortEndAd || 'N/A'}
+                        \n*IP PE / Puerto y Subinterfaz Extremo B:*
+                        \n${data.in_peIpPortEndBd || 'N/A'}
+                        \n*PW ID:* ${data.in_pseudowireIdd || 'N/A'}
+                        \n*Estado PW:* ${data.in_pwStatusd || 'N/A'}
+                        \n*¿Es anillo?:* ${data.in_isRingNetworkd || 'N/A'}
+                        \n*¿Es multicast?:* ${data.in_isMulticastd || 'N/A'}`;
+
+                        let finalInternet = data.check_n2DInternet ? `\n\n*🔹---------EVIDENCIA CLIENTE----------*
+                        \n${data.in_clientEvidenceDetailsd || 'N/A'}
+                        \n*PRUEBAS DESDE EDGE*
+                        \n*Ping desde BVI/PE a IP aprendida por ARP (Cliente):*
+                        \n${data.in_pingBviToClientIpd || 'N/A'} 
+                        \n*Ping desde BVI hacia destino afectado y DNS públicos:*
+                        \n${data.in_pingBviToDestPublicDnsd || 'N/A'} 
+                        \n*Traceroute desde la BVI / PE hacia destino público:*
+                        \n${data.in_tracerouteBviToPublicd || 'N/A'}` : ``;
+
                         layout = `*📋 Escalamiento N1 → N2 | Degradación Servicio ${typeService}*
                         \n\n*🔹---------MOTIVO ESCALACIÓN / OBSERVACIONES / PUNTOS DE INTERÉS ----------*
                         \n${data.in_issueDescriptiond || 'N/A'}
@@ -1776,27 +1833,13 @@
                         \n*🔹---------VALIDACIONES ACCESO / ÚLTIMA MILLA----------*             
                         \n*Estado puerto cliente / UNI (A y B si aplica):* 
                         \n${data.in_clientPortStatusd || 'N/A'}
-                        \n*¿Se descartó falla local básica en acceso? (Puerto Down / VLAN):* ${data.in_localFailureDiscardedd || 'N/A'}                      
-                        \n*🔹---------CAPACIDAD----------*                      
-                        \n*Tipo de problema:* ${data.in_problemTyped || 'N/A'}                          
-                        \n*VLAN especifica:* ${data.in_specificVland || 'N/A'}
-                        \n*¿Se afecta solo un sentido del tráfico?:* ${data.in_unidirectionalTrafficd || 'N/A'}
-                        \n*¿Se probó desde ambos extremos?:* ${data.in_testedBothEndsd || 'N/A'}
-                        \n\n*DATOS TECNICOS L2*
-                        \n\n*IP PE / Puerto y Subinterfaz Extremo A:*
-                        \n${data.in_peIpPortEndAd || 'N/A'}
-                        \n*IP PE / Puerto y Subinterfaz Extremo B:*
-                        \n${data.in_peIpPortEndBd || 'N/A'}
-                        \n*PW ID:* ${data.in_pseudowireIdd || 'N/A'}
-                        \n*Estado PW:* ${data.in_pwStatusd || 'N/A'}
-                        \n*¿Es anillo?:* ${data.in_isRingNetworkd || 'N/A'}
-                        \n*¿Es multicast?:* ${data.in_isMulticastd || 'N/A'}      
+                        \n*¿Se descartó falla local básica en acceso? (Puerto Down / VLAN):* ${data.in_localFailureDiscardedd || 'N/A'}${internetTest}
                         \n*🔹----------PRUEBAS REALIZADAS CORE-------------*          
                         \n*Utilización Speed:*
                         \n${data.in_utilizationSpeedd || 'N/A'}
                         \n*Potencias opticas de los puertos en los extremos:*
                         \n${data.in_opticalPowersd || 'N/A'}
-                        \n*¿Hay CRC, dorps, flaps?:* ${data.in_portErrorsd || 'N/A'}`;
+                        \n*¿Hay CRC, dorps, flaps?:* ${data.in_portErrorsd || 'N/A'}${finalInternet}`;
                         break;
 
                     default:

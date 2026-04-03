@@ -1459,6 +1459,10 @@
                 "Steven Marmolejo Guegia",
                 "Sergio D. Hurtado Muñoz",
                 "Tomys J. Ibarra Quiroz",
+                "Jorge D. Trigo Mendez",
+                "N. Abel Molinas Figueredo",
+                "O. Marcelo Caballero Caceres",
+                "Jose R. Zarate Maidana",
                 "Yan Carlos Chacue Delgado"
             ];
             const dataLists = document.querySelectorAll('.n1-selector');
@@ -1818,7 +1822,10 @@
                         \n*Ping desde BVI hacia destino afectado y DNS públicos:*
                         \n${data.in_pingBviToDestPublicDnsd || 'N/A'} 
                         \n*Traceroute desde la BVI / PE hacia destino público:*
-                        \n${data.in_tracerouteBviToPublicd || 'N/A'}` : ``;
+                        \n${data.in_tracerouteBviToPublicd || 'N/A'}` : `\n\n*Ping Extremo A → B:*
+                        \n${data.in_pingAToBd || 'N/A'} 
+                        \n*Ping Extremo B → A:*
+                        \n${data.in_pingBToAd || 'N/A'}`;
 
                         layout = `*📋 Escalamiento N1 → N2 | Degradación Servicio ${typeService}*
                         \n\n*🔹---------MOTIVO ESCALACIÓN / OBSERVACIONES / PUNTOS DE INTERÉS ----------*

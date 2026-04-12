@@ -69,6 +69,22 @@
                 <li class="nav-item">
                     <a class="nav-link" data-bs-toggle="pill" href="#layoutmail_tab">Plantilla Correo</a>
                 </li>
+                
+                <li class="nav-item">
+                    <a class="nav-link" data-bs-toggle="pill" href="#command_tab">Comandos</a>
+                </li>
+
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#">Config. Equipos</a>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="#rax_tab" data-bs-toggle="pill">RAX 701/711</a></li>
+                    </ul>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" data-bs-toggle="pill" href="#eq_img_tab">Imagenes Equipos</a>
+                </li>
+                
             </ul>
         </div>
     </nav>
@@ -1326,8 +1342,8 @@
                             <div class="col">
                                 <div class="form-floating mb-3">
                                     <select role="button" class="form-select" id="in_discards">
-                                        <option value="no">No</option>
                                         <option value="si">Si</option>
+                                        <option value="no">No</option>
                                         <option value="verbales">Verbales</option>
                                     </select>
                                     <label class="form-label">Descartes 1er nivel:</label>
@@ -1416,6 +1432,19 @@
                 </form>
 
             </section>
+            <!-- ─── COMANDOS EQUIPOS ──────────────────────────────────────── -->
+            <section class="tab-pane container fade text-center" id="command_tab" style="width: 1000px;">
+                Updating ...
+            </section>
+            <!-- ─── IMAGENES EQUIPOS ──────────────────────────────────────── -->
+            <section class="tab-pane container fade text-center" id="eq_img_tab" style="width: 1000px;">
+                Updating ...
+            </section>
+            <!-- ─── CONFIGURACIÓN DE EQUIPOS ──────────────────────────────────────── -->
+            <section class="tab-pane container fade text-center" id="rax_tab" style="width: 1000px;">
+                Updating ...
+            </section>
+
         </div>
     </div>
     <!-- JS -->
@@ -1895,13 +1924,28 @@
 
             //BOTON LIMPIAR FORMS
             const btnClean = document.querySelectorAll('.btn-clean');
+            // const checkbox = document.querySelector('.form-check-input');
             btnClean.forEach(btn => {
 
                 btn.addEventListener('click', (event) => {
 
                     const currentForm = event.target.closest('form');
                     if (currentForm) {
+
+                        // 2. Buscamos el checkbox específico dentro de este formulario
+                        const checkbox = currentForm.querySelector('.form-check-input'); 
+                        
+                        if (checkbox) {
+                            // Nos aseguramos de que esté desmarcado (por si el reset no fue suficiente)
+                            checkbox.checked = false; 
+                            
+                            // 3. ¡LA MAGIA! Simulamos que un humano hizo el cambio
+                            // Esto despertará a las funciones que ocultan/muestran tus secciones
+                            checkbox.dispatchEvent(new Event('change')); 
+                        }
+
                         currentForm.reset();
+
                     }
 
                     window.scrollTo({

@@ -1403,6 +1403,11 @@
 
                         <h5 class="border-start border-4 border-primary mb-3"><span class="ms-2">DIAGNOSTICO</span></h5>
 
+                        <div class="form-floating mb-3 d-none" id="content_mastertk">
+                            <input type="text" class="form-control" id="in_mastertk" placeholder="" value="">
+                            <label>Ticket Master:</label>
+                        </div>
+
                         <div class="form-floating">
                             <textarea class="form-control ufi-textarea" id="in_n1validation" placeholder=""
                                 rows="8"></textarea>
@@ -1574,6 +1579,7 @@
                 contentInternet: document.getElementById("content_internet"),
                 contentVisita: document.getElementById("content_visita"),
                 contentDatosImp: document.getElementById("content_datos_imp"),
+                contentMasterTK: document.getElementById("content_mastertk"),
                 divsN2tecdata: document.getElementById("content_n2tecdata"),
                 divsN2valn1: document.getElementById("content_n2valn1"),
                 // NodeLists (Múltiples elementos)
@@ -1618,7 +1624,7 @@
             setupCheckbox(ui.checkInternet, ui.contentInternet, null, "INTERNET", "CAPACIDAD");
 
             // Caundo se requieran ocultar o monstrar varios div con el mismo check, se pasan como arreglo
-            setupCheckbox(ui.checkMasiva, null, [ui.contentVisita, ui.contentDatosImp], "MASIVA", "INDIVIDUAL");
+            setupCheckbox(ui.checkMasiva, ui.contentMasterTK, [ui.contentVisita, ui.contentDatosImp], "MASIVA", "INDIVIDUAL");
 
             setupCheckbox(ui.checkN2CInternet, ui.divsInternet, ui.divsCapacidad, "INTERNET", "CAPACIDAD");
             setupCheckbox(ui.checkN2ssa, ui.divsN2tecdata, ui.divsN2valn1, "DWDM/TX", "IP");
@@ -1673,6 +1679,9 @@
                                 \n*Fecha alarma DG:* ${data.in_alarmdate || 'N/A'}
                                 \n*Bus (Sí/No):* ${data.in_topology || 'N/A'}
                                 `;
+                        }else{
+                            layout += `\n\n*🔹---------TICKET MASTER----------*
+                            \n*No:* ${data.in_mastertk || 'N/A'}`;
                         }
 
                         layout += `\n\n*🔹--------INFORMACIÓN TÉCNICA-------*
